@@ -86,9 +86,9 @@ To quantify the risk of introduction of yellow fever, a mathematical model was a
 
 #### Temperature dependent *R0* estimates 
 
-A temperature dependent model was used to estimate *R0* values for each city predicted to have at least one yellow fever introduction. For vector borne diseases like yellow fever, *R0* is the product of the average number of infectious mosquitos produced per infectious human (*R0<sup>HM</sup>*) and the average number of infectious humans produced per infectious mosquito (*R0<sup>MH</sup>*). 
+A temperature dependent model was used to estimate *R0* values for each Asian city predicted to have at least one yellow fever introduction. For vector borne diseases like yellow fever, *R0* is the product of the average number of infectious mosquitos produced per infectious human (*R0<sup>HM</sup>*) and the average number of infectious humans produced per infectious mosquito (*R0<sup>MH</sup>*). Therefore, *R0<sup>HM</sup>* and *R0<sup>MH</sup>* were estimated at the average temperature of each Asian city. 
 
-The influence of temperature on the predicted range of *R0* was also modelled, with values also ascertained at each locations minimum and maximum temperature.
+The influence of temperature on the predicted range of *R0* was also modelled, with values also ascertained for the minimum and maximum temperature of each Asian city.
 
 #### Probability of autochthonous transmission given at least one introduciton of yellow fever
 
