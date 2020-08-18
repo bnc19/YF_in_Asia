@@ -1,3 +1,8 @@
+# Background
+
+Concern is growing over the international spread of the vector-borne disease, yellow fever. Thus far, yellow fever transmission has never been recorded in Asia, depsite the presence of the mosquitos and suitable ecolofical conditions. Global shortages of vaccines prompt fears that any outbreak in Asia could lead to widespread loss of life with huge economic impact. 
+
+As a result, this analysis aims to quantify the risk of yellow fever in Asia. We approached this in two parts. Firstly, the risk of yellow fever introductions into Asia through the arrival of viraemic travellers. Secondly, the risk of those infectious individuals resulting in local transmission. 
 
 # Repository structure
 
