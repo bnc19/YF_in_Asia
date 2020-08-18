@@ -1,7 +1,7 @@
 
 # Repository structure
 
-This repository contains data and code pertaining to the risk analysis of yellow fever in Asia. 
+This repository contains data and code pertaining to The Risk Analysis of Yellow Fever in Asia. 
 Specifically, it contains: 
 
 * The data and code used to estimate the number of yellow fever case introductions from endemic countries 
