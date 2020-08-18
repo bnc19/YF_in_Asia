@@ -32,7 +32,7 @@ each country and airport in Asia included in this analysis is also listed.
 
 * prov_asia_temp.csv: Ecological data for all provinces of interest in Asia. 
 
-* temp.params.csv: Medians of parameter samples for thermal minimum ($T0$) and maximum ($Tm$) and 
+* temp.params.csv: Medians of parameter samples for thermal minimum (*T0*) and maximum ($Tm$) and 
 positive rate constant ($c$) values for the mosquito traits: biting rate ($a$), lifespan ($lf$) and 
 parasite development rate ($PDR$). 
 
