@@ -20,10 +20,10 @@ into Asia.
 
 The data folder contains: 
 
-* asia_flows_country.csv: Cumulative number of passenger journeys made between countries endemic for yellow fever and countries in Asia during 2016, obtained from the International Air Transport Association.
+* asia_flows_country.csv: Cumulative number of passenger journeys made between countries endemic for yellow fever and countries in Asia during 2016, obtained from the International Air Transport Association (IATA).
 
 * asia_flows_airport.csv: Cumulative number of passenger journeys made between countries endemic for yellow fever 
-and airports in Asia during 2016, International Air Transport Association.
+and airports in Asia during 2016, obtained from the IATA.
 
 * asia_ec_locations_airport.csv: Data about each endemic country. For each endemic country there is: 
 a location code, the population size, the average number of days international travellers stay for, the cumulative incidence of yellow 
