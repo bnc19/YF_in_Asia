@@ -92,6 +92,6 @@ The influence of temperature on the predicted range of *R0* was also modelled, w
 
 #### Probability of autochthonous transmission given at least one introduciton of yellow fever
 
-We used a branching process model to estimate the offspring distribution at each generation. This value can be drawn from negative binomial probability distributions with dispersion parameter *k* and means *R0<sup>MH</sup>* and *R0<sup>HM</sup>* respectively. The probability of autochthonous transmission, given the introduction of one infectious human, is therefore derived from the probability of infecting at least one mosquito and the infectious mosquito infecting at least one human.  
+We used a branching process model to estimate the offspring distributions of humans and vectors. This value can be drawn from negative binomial probability distributions with means *R0<sup>MH</sup>* and *R0<sup>HM</sup>* and dispersion parameter *k*. The probability of autochthonous transmission, given the introduction of one infectious human, is therefore derived from the probability of infecting at least one mosquito and the infectious mosquito infecting at least one human.
 
 Sensitivity analyses on key assumptions about vector competence, population immunity and individual variation in infectiousness were carried out. 
