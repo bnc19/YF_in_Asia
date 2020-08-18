@@ -84,7 +84,7 @@ The scripts provided are in chronological order of the work process, however eac
 
 To quantify the risk of introduction of yellow fever, a mathematical model was applied to flight and epidemiological data from 2016, via the epiflows package. First we estimated the number of introductions predicted into countries in Asia during 2016. If the upper 95% confidence interval for the total number of introductions into an Asian country was greater than 1, we investigated the endemic source country and repeated the analysis at the airport level
 
-#### Temperature dependent $R0$ estimates 
+#### Temperature dependent *R0* estimates 
 
 A temperature dependent model was used to estimate *R0* values for each city predicted to have at least one yellow fever introduction. For vector borne diseases like yellow fever, *R0* is the product of the average number of infectious mosquitos produced per infectious human (*R0<sup>HM</sup>*) and the average number of infectious humans produced per infectious mosquito (*R0<sup>MH</sup>*). 
 
