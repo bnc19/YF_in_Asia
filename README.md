@@ -59,8 +59,8 @@ a. YF_introductions.R: Script for quantifying the risk of yellow fever case intr
 b. Temp_R0.R: Script for estimating temperature dependent *R0* values for locations in Asia 
 at risk of yellow fever introductions 
 
-c. Prob_auto_trans.R: script for estimating the probability of autochthonous transmission 
-given the introduction of at least one yellow fever case and related sensitvitiy analyses. 
+c. Prob_auto_trans.R: Script for estimating the probability of autochthonous transmission, 
+given the introduction of at least one yellow fever case, and related sensitvitiy analyses. 
 
 
 ## R 
