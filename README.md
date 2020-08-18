@@ -66,7 +66,7 @@ given the introduction of at least one yellow fever case, and related sensitviti
 ## R 
 
 
-The R folder contains the a script of functions for each of the analysis scripts: 
+The R folder contains a script of functions for each of the analyses scripts: 
 
 a. FUN_YF_introductions.R
 
