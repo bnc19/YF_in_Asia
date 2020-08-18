@@ -32,22 +32,22 @@ each country and airport in Asia included in this analysis is also listed.
 
 * prov_asia_temp.csv: Ecological data for all provinces of interest in Asia. 
 
-* temp.params.csv: Medians of parameter samples for thermal minimum (*T0*) and maximum ($Tm$) and 
-positive rate constant ($c$) values for the mosquito traits: biting rate ($a$), lifespan ($lf$) and 
-parasite development rate ($PDR$). 
+* temp.params.csv: Medians of parameter samples for thermal minimum (*T0*) and maximum (*Tm*) and 
+positive rate constant (*c*) values for the mosquito traits: biting rate (*a*), lifespan (*lf*) and 
+parasite development rate (*PDR*). 
 
 
 Also included are data estimated as part of this project: 
 
 * airports_risk.csv: The number of yellow fever case introductions predicted into Airports in Asia 
 
-* avg_R0_estimates.csv: $R0$ estimates for cities in Asia at their average temperature 
+* avg_R0_estimates.csv: *R0* estimates for cities in Asia at their average temperature 
 
-* min_R0_estimates.csv: $R0$ estimates for cities in Asia at their minimum temperature 
+* min_R0_estimates.csv: *R0* estimates for cities in Asia at their minimum temperature 
 
-* max_R0_estimates.csv: $R0$ estimates for cities in Asia at their maxiumum temperature 
+* max_R0_estimates.csv: *R0* estimates for cities in Asia at their maxiumum temperature 
 
-* temp_variables_mean.csv: Temperature dependent mosquito trait ($a$,$lf$ $PDR$) estimates for cities in Asia at
+* temp_variables_mean.csv: Temperature dependent mosquito trait (*a*, *lf* and *PDR*) estimates for cities in Asia at
 their average temperatures
 
 
@@ -56,7 +56,7 @@ The scripts folder contains the main scripts for each separate analysis
 
 a. YF_introductions.R: Script for quantifying the risk of yellow fever case introductions in Asia
 
-b. Temp_R0.R: Script for estimating temperature dependent $R0$ values for locations in Asia 
+b. Temp_R0.R: Script for estimating temperature dependent *R0* values for locations in Asia 
 at risk of yellow fever introductions 
 
 c. Prob_auto_trans.R: script for estimating the probability of autochthonous transmission 
@@ -86,7 +86,7 @@ To quantify the risk of introduction of yellow fever, a mathematical model was a
 
 #### Temperature dependent $R0$ estimates 
 
-A temperature dependent model was used to estimate $R0$ values for each city predicted to have at least one yellow fever introduction. For vector borne diseases like yellow fever, $R0$ is the product of the average number of infectious mosquitos produced per infectious human ($R0^{HM}$) and the average number of infectious humans produced per infectious mosquito ($R0^{MH}$). 
+A temperature dependent model was used to estimate $R0$ values for each city predicted to have at least one yellow fever introduction. For vector borne diseases like yellow fever, $R0$ is the product of the average number of infectious mosquitos produced per infectious human (*R0^{HM}*) and the average number of infectious humans produced per infectious mosquito (*R0^{MH}*). 
 
 The influence of temperature on the predicted range of R0 was also modelled, with values also ascertained at each locations minimum and maximum temperature.
 
