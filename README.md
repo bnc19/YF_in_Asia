@@ -86,13 +86,13 @@ To quantify the risk of introduction of yellow fever, a mathematical model was a
 
 #### Temperature dependent $R0$ estimates 
 
-A temperature dependent model was used to estimate $R0$ values for each city predicted to have at least one yellow fever introduction. For vector borne diseases like yellow fever, $R0$ is the product of the average number of infectious mosquitos produced per infectious human (*R0^{HM}*) and the average number of infectious humans produced per infectious mosquito (*R0^{MH}*). 
+A temperature dependent model was used to estimate *R0* values for each city predicted to have at least one yellow fever introduction. For vector borne diseases like yellow fever, *R0* is the product of the average number of infectious mosquitos produced per infectious human (*R0<sup>HM/sup>*) and the average number of infectious humans produced per infectious mosquito (*R0<sup>MH/sup>*). 
 
-The influence of temperature on the predicted range of R0 was also modelled, with values also ascertained at each locations minimum and maximum temperature.
+The influence of temperature on the predicted range of *R0* was also modelled, with values also ascertained at each locations minimum and maximum temperature.
 
 #### Probability of autochthonous transmission given at least one introduciton of yellow fever
 
 We used a branching process model with a negative binomial distribution to estimate the offspring distribution at each generation.
-This value can be drawn from negative binomial probability distributions with dispersion parameter $k$ and means $R0^{MH}$ and $R0^{HM}$ respectively.  The probability of autochthonous transmission, given the introduction of one infectious human, is therefore derived from the probability of infecting at least one mosquito and the infectious mosquito infecting at least one human.  
+This value can be drawn from negative binomial probability distributions with dispersion parameter *k* and means *R0<sup>MH/<sup>* and *R0<sup>HM/<sup>* respectively. The probability of autochthonous transmission, given the introduction of one infectious human, is therefore derived from the probability of infecting at least one mosquito and the infectious mosquito infecting at least one human.  
 
 Sensitivity analyses on key assumptions about vector competence, population immunity and individual variation in infectiousness were carried out. 
