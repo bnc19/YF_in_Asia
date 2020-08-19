@@ -312,7 +312,7 @@ comp_legend <- function() {
     scale_x_continuous(limits=c(0,1),breaks=seq(0,1,0.2)) +
     ggtitle(cities) + 
     geom_segment(x = 0, xend = 5, y = 0.5, yend = 0.5, size = 0.5, linetype = 3) + 
-    geom_segment(x = 0.25, xend = 0.25, y = 0, yend = 5, size = 0.5, linetype = 2, color = "grey")
+    geom_segment(x = 0.25, xend = 0.25, y = 0, yend = 5, size = 0.5, linetype = 1, color = "grey")
   
   leg <- get_legend(plot)
   
