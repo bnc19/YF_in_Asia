@@ -1,10 +1,17 @@
+################################################################################
+################################################################################
+# Functions to quanitfy the risk of yellow fever case introductions into Asia 
+################################################################################
+################################################################################
 
 
-##### Functions to quanitfy the risk of yellow fever case introductions into Asia #####
 
-
-### Function to remove airports which have unidirectional travel as epiflows requires same length of importations and exportations ###
-### (e.g. One passanger flew North Korea to Brazil but no passangers flew Brazil to North Korea) ###
+################################################################################
+# Function to remove airports which have unidirectional travel as epiflows
+# requires same length of importations and exportations 
+# (e.g. One passanger flew North Korea to Brazil but no passangers flew Brazil 
+# to North Korea)
+################################################################################
 
 '%!in%' <- function(x,y)!('%in%'(x,y))  # create an operator for object not present in both 
 
@@ -19,7 +26,11 @@ ifelse(dim(flow)[1] < 1, return(x), return(flow) )  # if already equal, return o
 
 }
 
-### Filter country and  remove unequal flows ###
+
+################################################################################
+# Function to filter country and  remove unequal flows 
+################################################################################
+
 tidy_epiflows <- function(x, country) {
   
  endem_country <- filter (x, from == country | to == country) 
@@ -31,11 +42,21 @@ return(even_flows)
   
 }
 
-### Randomly draw from the incubation and infectious periods ###
+
+################################################################################
+# Functions to randomly draw from the incubation and infectious period
+# distributions
+################################################################################
+
 incubation <- function(n) { rlnorm(n, 1.46, 0.35) }
 infectious <- function(n) {  rnorm(n, 4.5, 1.5/1.96) }
 
-### Select Asian countries at risk of at least one introduction ###
+
+
+################################################################################
+# Function to select Asian countries at risk of at least one introduction 
+################################################################################
+
 select_at_risk <- function(x){
 
 
@@ -62,7 +83,12 @@ return(countrys_at_risk)
 }
 
 
-### Select endemic countries predicted to result in at least one introduction to an Asian country ###
+
+################################################################################
+# Function to select endemic countries predicted to result in at least one 
+# introduction to an Asian country 
+################################################################################
+
 select_endem <- function(x, country){
   
   x$endemic_country <- country  # add name of source country
@@ -81,7 +107,11 @@ select_endem <- function(x, country){
     return(at_risk)}
 }
 
-### plot endemic source ###
+
+
+################################################################################
+#Function to plot endemic source countries
+################################################################################
 
 plot_endemic_source <- function(risk_by_ec_country) {
   
@@ -124,7 +154,10 @@ return(plots_annot)
 }
 
 
-### plot airport ###
+
+################################################################################
+# Function to plot airports at risk of YF introductions
+################################################################################
 
 plot_airport <- function (SEA_airport,ME_airport) {
   SEA_risk <- rename(SEA_airport, "South and East Asian Countries"  = Asian_countries)
@@ -170,10 +203,5 @@ plot_airport <- function (SEA_airport,ME_airport) {
   
                          
                         }
-
-
-
-
-
 
 

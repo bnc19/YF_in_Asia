@@ -1,5 +1,15 @@
-##### Functions for estimating the probability of autochthonous transmission given the introduction of at least one yellow fever case #####
+################################################################################
+################################################################################
+# Functions for estimating the probability of autochthonous transmission given 
+# the introduction of at least one yellow fever case 
+################################################################################
+################################################################################
 
+
+
+################################################################################
+# Functions to estimate the probabality of autochthonous results
+################################################################################
 
 prob_auto<- function(n, mean_R0_HV , sd_R0_HV,R0_VH,  seeds, sd_seeds, k = 0.1, immunity = 0){
   
@@ -55,8 +65,8 @@ prob_auto<- function(n, mean_R0_HV , sd_R0_HV,R0_VH,  seeds, sd_seeds, k = 0.1, 
   
   return(out)
   
-}
-### Function to tidy data  ###
+} # estimate probabilities
+
 
 tidy_data <- function(x, name_col) {
   
@@ -74,10 +84,8 @@ tidy_data <- function(x, name_col) {
   
   return(output)
   
-}  
+}   # tidy data
 
-
-### Function to tidy auto tranmission results ###
 
 tidy_auto <- function (prob_transmission, airport_code, city) {
   
@@ -97,10 +105,14 @@ tidy_auto <- function (prob_transmission, airport_code, city) {
 
   return(out)
   
-}
+} # format data
 
 
-### Funciton to plot the probability of autochthonous transmission for all cities ###
+
+################################################################################
+# Funciton to plot the probability of autochthonous transmission for all cities 
+################################################################################
+
 plot_auto_cities <- function(x, city){
   
   x$color <- ifelse(x$upper_CI >= 0.5, 'red', 'black')  # if upper 95% CI is above 0.5 code as red 
@@ -118,7 +130,12 @@ plot_auto_cities <- function(x, city){
           axis.title.y = element_text(vjust = 0.5, hjust=0.3, angle = 0))  }
 
 
-### Funtion to format immunity and dispersion parameter sensitivity analyses ###
+
+################################################################################
+# Funtion to format the results of the immunity and dispersion parameter 
+# sensitivity analyses 
+################################################################################
+
 format_immunity_k_data <- function(x) {
   tidy <- rename(x,"Immunity" = Variable )   
   
@@ -143,11 +160,17 @@ format_immunity_k_data <- function(x) {
 }
 
 
-### Funcitons to plot the immunity and sensitivity analyses  ###
+
+################################################################################
+# Funcitons to plot the immunity and sensitivity analyses  
+################################################################################
+
 plot_immunity_k <- function(x, city) {
 plots <- ggplot(x) + 
-  geom_ribbon(aes(x=Immunity,ymin=Lower,ymax=Upper, color = `dispersion parameter (k)`, group = `dispersion parameter (k)`, fill = `dispersion parameter (k)`),  size = 0.2, alpha = .2, show.legend = FALSE) +
-  geom_line(aes(x=Immunity,y= Mean, color = `dispersion parameter (k)`, group = `dispersion parameter (k)`), size = 0.6, show.legend = FALSE )+
+  geom_ribbon(aes(x=Immunity,ymin=Lower,ymax=Upper, color = `dispersion parameter (k)`, 
+                  group = `dispersion parameter (k)`, fill = `dispersion parameter (k)`),  size = 0.2, alpha = .2, show.legend = FALSE) +
+  geom_line(aes(x=Immunity,y= Mean, color = `dispersion parameter (k)`, 
+                group = `dispersion parameter (k)`), size = 0.6, show.legend = FALSE )+
   xlab("") + 
   ylab("") + 
   theme_hc(base_size = 18) + 
@@ -160,7 +183,7 @@ plots <- ggplot(x) +
   
   return(plots)
   
-}
+} # plot 
 
 add_legend <- function() {
 l <- ggplot(list_immunity_k[[1]]) + 
@@ -180,10 +203,14 @@ l <- ggplot(list_immunity_k[[1]]) +
 leg <- get_legend(l)
 
 return(leg)
-}
+} # legend
 
 
-### Funcitons to estiamte R0_VH with varied competency ###
+
+################################################################################
+# Funcitons for mosquito density and competency analysis 
+################################################################################
+
 est_R0_VH_comp <- function(airport.code, n, temp_variables, comp) {
   
   TV <- temp_variables #temp variable can be mean, min, max 
@@ -200,15 +227,12 @@ est_R0_VH_comp <- function(airport.code, n, temp_variables, comp) {
   R0 <- biting_rate * lf* B_VH  # multiply all parameters 
   
   return(R0)
-}
+}  # estimate R0_VH with varied competency 
 
-### Functions for estimating the infectious period and the effective human vector transmission rate  ###
-infectious <- function(n) {  rnorm(n, 4.5, 1.5/1.96) }
+infectious <- function(n) {  rnorm(n, 4.5, 1.5/1.96) } # randomly draw from the infectious period distribution
 
-human_vec_transmission <- function(n) {rnorm(n, 0.4, 0.1)}
+human_vec_transmission <- function(n) {rnorm(n, 0.4, 0.1)} # randomly draw from the infectious the effective human vector transmission rate  
 
-
-### Function to estimate R0_HV with varied mosquitos per person ###
 est_R0_HV_mosq <- function(airport.code, n,  temp_variables, mosq_per_person) { 
   
   TV <- temp_variables  #temp variable can be mean, min, max 
@@ -228,9 +252,8 @@ est_R0_HV_mosq <- function(airport.code, n,  temp_variables, mosq_per_person) {
   R0_HV <- mosq_person * biting_rate * prob_surv * B_HV * DI  # multiply all parameters 
   
   return(R0_HV)
-}
+} #estimate R0 HV with varied density
 
-### Function to estimate the mean of R0_HV with varied mosquitos per person ###
 est_R0_HV_mean_mosq <- function(airport.code, n, temp_variables, mosq_per_person){
   
   TV <- temp_variables 
@@ -255,9 +278,8 @@ est_R0_HV_mean_mosq <- function(airport.code, n, temp_variables, mosq_per_person
                         upper_CI = quant_HV[2], 
                         sd = sd_HV) 
   
-  return(out_HV)}
+  return(out_HV)} #estimate mean of HV from sampling 
 
-### Function to tidy and name mosquito sensitivity analysis output ###
 tidy_and_name_comp_den <- function(x) {
   tidy <- rename(x,"Competency" = Variable )
   
@@ -281,9 +303,13 @@ tidy_and_name_comp_den <- function(x) {
  out$Competency <- as.numeric(out$Competency )
   
   return(out)
-}
+} #  tidy and name mosquito sensitivity analysis output 
 
-### Functions to plot mosquito sensitivity analysis ###
+
+################################################################################
+# Functions to plot mosquito sensitivity analysis 
+################################################################################
+
 plot_comp_den <- function(x, cities) {
   
   plot <- ggplot(x) + 
@@ -298,7 +324,7 @@ plot_comp_den <- function(x, cities) {
     ggtitle(cities) + 
     geom_segment(x = 0, xend = 5, y = 0.5, yend = 0.5, size = 0.5, linetype = 3) + 
     geom_segment(x = 0.25, xend = 0.25, y = 0, yend = 5, size = 0.5, linetype = 1, color = "grey")
-}
+} # plot 
 
 comp_legend <- function() {
   plot <- ggplot(list_comp_dens[[1]] ) + 
@@ -312,13 +338,11 @@ comp_legend <- function() {
     scale_x_continuous(limits=c(0,1),breaks=seq(0,1,0.2)) +
     ggtitle(cities) + 
     geom_segment(x = 0, xend = 5, y = 0.5, yend = 0.5, size = 0.5, linetype = 3) + 
-    geom_segment(x = 0.25, xend = 0.25, y = 0, yend = 5, size = 0.5, linetype = 1, color = "grey")
+    geom_segment(x = 0.25, xend = 0.25, y = 0, yend = 5, size = 0.5,  color = "grey")
   
   leg <- get_legend(plot)
   
   return(leg)
-}
-
-
+} # legend
 
 

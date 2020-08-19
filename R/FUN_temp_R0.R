@@ -1,10 +1,15 @@
+################################################################################
+################################################################################
+# Functions for estimating temperature dependent R0 values for locations in 
+# Asia at risk of yellow fever introductions 
+################################################################################
+################################################################################
 
-##### Functions for estimating temperature dependent R0 values for locations in Asia at risk of yellow fever introductions #####
 
 
-
-### Function for estimating temp suitability ###
-
+################################################################################
+# Functions to estimate temp suitability 
+################################################################################
 
 briere <-  function(Temp, parm){                   # function for biting rate and PDR 
   out <-  parm[3]*Temp*(Temp-parm[1])*(parm[2]-Temp)^0.5
@@ -17,7 +22,11 @@ quad <- function(Temp, parm){    # function for mortality rate
 }
 
 
-### Function for estimating biting rate, lifespan and extrinsic incubaiton period from temperature ###
+
+################################################################################
+# Function for estimating biting rate, lifespan and extrinsic incubaiton
+# period from temperature 
+################################################################################
 
 temp_param <- function(Temp) {
   
@@ -51,14 +60,14 @@ temp_param <- function(Temp) {
 }
 
 
-### Functions for estimating the infectious period and the effective human vector transmission rate,  ###
 
-infectious <- function(n) {  rnorm(n, 4.5, 1.5/1.96) }
-human_vec_transmission <- function(n) {rnorm(n, 0.4, 0.1)}
+################################################################################
+# Functions to estimate R0 
+################################################################################
 
+infectious <- function(n) {  rnorm(n, 4.5, 1.5/1.96) }  # randomly draw from the infectious period distribution
 
-
-### Functions to estimate R0 ###
+human_vec_transmission <- function(n) {rnorm(n, 0.4, 0.1)} # randomly draw from the infectious the effective human vector transmission rate
  
 est_R0_HV <- function(airport.code, n,  temp_variables) {   # estimate R0_HV
   
@@ -82,8 +91,7 @@ est_R0_HV <- function(airport.code, n,  temp_variables) {   # estimate R0_HV
   R0_HV <- mosq_person * biting_rate * prob_surv * B_HV * DI  # multiply all parameters 
   
   return(R0_HV)
-}
-
+}  # estimate R0 HV
 
 est_R0_VH <- function(airport.code,temp_variables) { # estimate R0_VH
   
@@ -103,8 +111,7 @@ est_R0_VH <- function(airport.code,temp_variables) { # estimate R0_VH
   
 
   return(R0)
-}
-
+} # estimate R0 VH
 
 est_R0_HV_mean <- function(airport.code, n, temp_variables){ #estimate the mean and 95 CI of R0_HV
   
@@ -128,8 +135,7 @@ est_R0_HV_mean <- function(airport.code, n, temp_variables){ #estimate the mean 
                         upper_CI = quant_HV[2], 
                         sd = sd_HV) 
   
-  return(out_HV)}
-
+  return(out_HV)} #estimate mean of HV from sampling 
 
 est_R0 <- function(airport.code, n, temp_variables) { # estimate mena and 95% CI R0
   
@@ -161,10 +167,7 @@ est_R0 <- function(airport.code, n, temp_variables) { # estimate mena and 95% CI
   return(out)
   
   
-}
-
-
-### Function to R0 estiamtes ###
+}  # estimate R0 
 
 tidy_R0 <- function(x, col_names) {
   
@@ -180,11 +183,13 @@ tidy_R0 <- function(x, col_names) {
   
   return(output)
   
-}
+} # tidy results 
 
 
 
-### Function to plot R0 estimates in SEA region ### 
+################################################################################
+# Function to plot R0 estimates 
+################################################################################
 
 plot_SEA_R0 <- function(R0_estimates, SEA) {
   
@@ -225,14 +230,7 @@ plot_SEA_R0 <- function(R0_estimates, SEA) {
   
   return(SEA_R0_plot)
   
-}
-
-
-
-### Function to plot R0 estimates in ME region ### 
-
-
-
+} # plot in SEA region 
 
 plot_ME_R0 <- function(R0_estimates, ME) {
   
@@ -275,13 +273,13 @@ cities <- c("Manama", "Amman", "Kuwait City", "Beirut", "Muscat", "Doha", "Damma
   
   return(ME_R0_plot)
   
-}
+} # plot in ME region 
 
 
 
-### function for sensitivity analysis of the effect of temperature on R0 ###
-
-
+################################################################################
+# Functions for sensitivity analysis of the effect of temperature on R0 
+################################################################################
 
 temp_param_sens <- function(Temp) {
   
@@ -392,7 +390,7 @@ est_R0_sen <- function(temp, nsim, temp_variables) {
 } # Estimate R0
 
 
-tidy_data <- function(x, name_col) {
+tidy_data <- function(x, name_col) { #tidy data
   
   x <- all_R0_estimates_sens
   name_col <- temp_range
@@ -412,3 +410,5 @@ tidy_data <- function(x, name_col) {
   return(output)
   
 } # tidy output of data 
+
+
