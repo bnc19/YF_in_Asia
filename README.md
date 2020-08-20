@@ -48,7 +48,7 @@ Also included are data estimated as part of this project:
 
 * min_R0_estimates.csv: *R0* estimates for cities in Asia at their minimum temperature 
 
-* max_R0_estimates.csv: *R0* estimates for cities in Asia at their maximum  temperature 
+* max_R0_estimates.csv: *R0* estimates for cities in Asia at their maximum temperature 
 
 * temp_variables_mean.csv: Temperature dependent mosquito trait (*a*, *lf* and *PDR*) estimates for cities in Asia at
 their average temperatures
