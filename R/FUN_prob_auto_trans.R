@@ -177,7 +177,8 @@ plots <- ggplot(x) +
   scale_y_continuous(limits=c(0,1),breaks=seq(0,1,0.2)) + 
   scale_x_continuous(limits=c(0,1),breaks=seq(0,1,0.2)) +
   ggtitle(city) + 
-  geom_segment(x = 0, xend = 5, y = 0.5, yend = 0.5, size = 0.5, linetype = 3) 
+  geom_segment(x = 0, xend = 5, y = 0.5, yend = 0.5, size = 0.5, linetype = 3) +
+  geom_segment(x = 0.8, xend = 0.8, y = 0, yend = 5, size = 0.5, linetype = 3) 
   
  
   
