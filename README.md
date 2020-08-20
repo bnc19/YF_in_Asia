@@ -1,6 +1,6 @@
 # Background
 
-Concern is growing over the international spread of the vector-borne disease, yellow fever. Thus far, yellow fever transmission has never been recorded in Asia, depsite the presence of mosquitos and suitable ecological conditions. Global shortages of the yellow fever vaccine mean that any outbreak in Asia could lead to widespread loss of life with huge economic impact. As a result, this analysis aims to quantify the risk of yellow fever in Asia. We approach this in two parts. Firstly, the risk of yellow fever introductions into Asia through the arrival of viraemic travellers. Secondly, the risk of those infectious individuals resulting in local transmission. 
+Concern is growing over the international spread of the vector-borne disease, yellow fever. Thus far, yellow fever transmission has never been recorded in Asia, depsite the presence of mosquitos and suitable ecological conditions. Global shortages of the yellow fever vaccine mean that any outbreak in Asia could quickly become a major epidemic. As a result, this analysis aims to quantify the risk of yellow fever in Asia. We first predicted the number of yellow fever introductions into Asia through the arrival of viraemic travellers. From this, we estimated the probability that those infectious individuals would result in local transmission. 
 
 # Repository structure
 
@@ -97,4 +97,4 @@ Sensitivity analysis on the influence of temperature on the predicted range of *
 
 We used a branching process model to estimate the probability of autochthonous transmission. The offspring distributions of humans and mosquitos can be drawn from negative binomial probability distributions with means *R0<sup>MH</sup>* and *R0<sup>HM</sup>* respectively, and the dispersion parameter *k*. The probability of autochthonous transmission, given the introduction of one infectious human, is therefore derived from the probability of infecting at least one mosquito and the infectious mosquito infecting at least one human.
 
-Sensitivity analyses on key assumptions about vector competence, the number of mosquitos per person, population immunity and individual variation in infectiousness were carried out. 
+Sensitivity analyses on key assumptions about vector competence, the number of mosquitos per person, population immunity and individual variation in infectiousness were carried out.
