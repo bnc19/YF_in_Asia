@@ -85,7 +85,7 @@ The scripts provided are in chronological order of the work process, however eac
 
 #### YF introductions
 
-To estimate the number of yellow fever case introduction into countries Asia, we applied a mathematical model to 2016 flight and yellow fever incidence data, via the epiflows package. If the upper 95% confidence interval for the total number of introductions into an Asian country was greater than 1, we investigated the endemic source country and repeated the analysis at the airport level
+To estimate the number of yellow fever case introduction into countries Asia, we applied a mathematical model to 2016 flight and yellow fever incidence data, via the Epiflows package. If the upper 95% confidence interval for the total number of introductions into an Asian country was greater than 1, we investigated the endemic source country and repeated the analysis at the airport level
 
 #### Temperature dependent *R0* estimates 
 
