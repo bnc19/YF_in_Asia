@@ -85,16 +85,16 @@ The scripts provided are in chronological order of the work process, however eac
 
 #### YF introductions
 
-To quantify the risk of introduction of yellow fever, a mathematical model was applied to flight and epidemiological data from 2016, via the epiflows package. First we estimated the number of introductions predicted into countries in Asia during 2016. If the upper 95% confidence interval for the total number of introductions into an Asian country was greater than 1, we investigated the endemic source country and repeated the analysis at the airport level
+To estimate the number of yellow fever case introduction into countries Asia, we applied a mathematical model to 2016 flight and yellow fever incidence data, via the epiflows package. If the upper 95% confidence interval for the total number of introductions into an Asian country was greater than 1, we investigated the endemic source country and repeated the analysis at the airport level
 
 #### Temperature dependent *R0* estimates 
 
-A temperature dependent model was used to estimate *R0* values for each Asian city predicted to have at least one yellow fever introduction. For vector borne diseases like yellow fever, *R0* is the product of the average number of infectious mosquitos produced per infectious human (*R0<sup>HM</sup>*) and the average number of infectious humans produced per infectious mosquito (*R0<sup>MH</sup>*). Therefore, *R0<sup>HM</sup>* and *R0<sup>MH</sup>* were estimated at the average temperature of each Asian city. 
+A temperature dependent model was used to estimate *R0* values for each Asian city predicted to have at least one yellow fever introduction. As yellow fever is transmitted by mosquitos, *R0* is the product of the average number of infectious mosquitos produced per infectious human (*R0<sup>HM</sup>*) and the average number of infectious humans produced per infectious mosquito (*R0<sup>MH</sup>*). Therefore, *R0<sup>HM</sup>* and *R0<sup>MH</sup>* were estimated at the average temperature of each Asian city. 
 
-The influence of temperature on the predicted range of *R0* was also modelled, with values also ascertained for the minimum and maximum temperature of each Asian city.
+Sensitivity analysis on the influence of temperature on the predicted range of *R0* was also modelled, with *R0* values also estimated for the temperature extremes of each Asian city.
 
 #### Probability of autochthonous transmission given at least one introduciton of yellow fever
 
-We used a branching process model to estimate the offspring distributions of humans and vectors. This value can be drawn from negative binomial probability distributions with means *R0<sup>MH</sup>* and *R0<sup>HM</sup>* and dispersion parameter *k*. The probability of autochthonous transmission, given the introduction of one infectious human, is therefore derived from the probability of infecting at least one mosquito and the infectious mosquito infecting at least one human.
+We used a branching process model to estimate the probability of autochthonous transmission. The offspring distributions of humans and mosquitos can be drawn from negative binomial probability distributions with means *R0<sup>MH</sup>* and *R0<sup>HM</sup>* respectively, and the dispersion parameter *k*. The probability of autochthonous transmission, given the introduction of one infectious human, is therefore derived from the probability of infecting at least one mosquito and the infectious mosquito infecting at least one human.
 
-Sensitivity analyses on key assumptions about vector competence, population immunity and individual variation in infectiousness were carried out. 
+Sensitivity analyses on key assumptions about vector competence, the number of mosquitos per person, population immunity and individual variation in infectiousness were carried out. 
