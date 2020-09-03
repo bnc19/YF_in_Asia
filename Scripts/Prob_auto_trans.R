@@ -181,7 +181,7 @@ immunity_k_grid <- plot_grid(immunity_k_plots[[3]], immunity_k_plots[[4]],
 immunity_k_annot  <- annotate_figure(immunity_k_grid , 
                                      left = text_grob("Probability of autochthonous transmission", 
                                      rot = 90, size = 22, vjust = 0.3, hjust = 0.3), 
-                                     bottom = text_grob("Temperature", size = 22))
+                                     bottom = text_grob("Proportion of the population assumed immune to yellow fever", size = 22))
 
                         
 
