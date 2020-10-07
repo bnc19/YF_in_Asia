@@ -321,7 +321,7 @@ est_R0_HV_sen <- function(temp, n,  temp_variables) {
   
   TV <- temp_variables  #temp variable can be mean, min, max 
   
-  mosq_person <- 0.465 # select location specific mosq / person (SEA or Middle East)
+  mosq_person <- 0.49 # select location specific mosq / person (SEA or Middle East)
   
   biting_rate <- TV$a[TV$temp_range == temp]  # select airport temp specific biting rate 
   
