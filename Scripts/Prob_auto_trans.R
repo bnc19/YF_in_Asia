@@ -28,7 +28,7 @@ library(reshape2)
 
 
 # Set working directory
-setwd("/Users/bethancracknelldaniels/Desktop/MSc project readings/YF in Asia Project")
+# setwd("/Users/bethancracknelldaniels/Desktop/Manuscript/YF_in_Asia-master")
 
 # Data
 
@@ -37,6 +37,7 @@ avg_R0_estimates <- read.csv("DATA/avg_R0_estimates.csv", stringsAsFactors=FALSE
 min_R0_estimates <- read.csv("DATA/min_R0_estimates.csv", stringsAsFactors=FALSE)[, -1]
 max_R0_estiamtes <- read.csv("DATA/max_R0_estimates.csv",stringsAsFactors=FALSE)[, -1]
 avg_temp_var <- read.csv("DATA/temp_variables_mean.csv", stringsAsFactors=FALSE)[, -1]
+
 
 
 # source scripts
@@ -101,7 +102,7 @@ list_auto_plots <- lapply(1:29, function(i){
 
 
 ################################################################################
-# Figure 8: Mean and 95% confidence intervals of the predicted probabilities of 
+# Figure 2: Mean and 95% confidence intervals of the predicted probabilities of 
 # autochthonous transmission in Asian Cities, given the independent 
 # introduction of at least one infectious individual.
 ################################################################################
@@ -116,7 +117,7 @@ all_auto_plots_anot <- annotate_figure(all_auto_plots,
                                        bottom = text_grob("Temperature", size = 22))
 
 
-ggsave(plot=all_auto_plots_anot , filename="Figure_8.png", height = 17, width = 12)
+ggsave(plot=all_auto_plots_anot , filename="Figure_2.png", height = 17, width = 12)
 
 
 
@@ -124,7 +125,7 @@ ggsave(plot=all_auto_plots_anot , filename="Figure_8.png", height = 17, width = 
 # Sensitivity analyses of population immunity and dispersion parameter 
 ################################################################################
 
-# select cities with probablities over 50%
+# select cities with probabilities over 50%
 
 R0_risk <- rbind(avg_R0_estimates[c(7, 8,12 ), ], max_R0_estiamtes[c(26, 27), ])
 
@@ -166,7 +167,7 @@ immunity_k_plots <- lapply(1:5, function(i){
 
 
 ################################################################################
-# Figure 9: Probability of autochthonous transmission across increasing levels  
+# Figure 3: Probability of autochthonous transmission across increasing levels  
 # of population immunity at A) the average temperature in Dubai, Mumbai and 
 # Guangzhou and B) the maximum temperature in Beijing and Shanghai. 
 ################################################################################
@@ -186,7 +187,7 @@ immunity_k_annot  <- annotate_figure(immunity_k_grid ,
                         
 
 
-ggsave(plot=immunity_k_annot , filename="Figure_9.png", height = 16, width = 12)
+ggsave(plot=immunity_k_annot , filename="Figure_3.png", height = 16, width = 12)
 
 
 
@@ -205,7 +206,7 @@ R0_HV_comp <- lapply(1:6, function(i){est_R0_VH_comp(cities[i], 10000, avg_temp_
 
 
 
-### Estimate R0 VH values for range of mosquitos per person ###
+### Estimate R0 VH values for range of mosquitoes per person ###
 
 mosq_per_person <- c(0.05, 0.13, 0.6, 0.85, 1.4)
 
@@ -248,7 +249,7 @@ legend <- comp_legend()
  
 
 ################################################################################
-# Figure 10: Sensitivity analysis of the impact of mosquito density and 
+# Supplementary figure 2: Sensitivity analysis of the impact of mosquito density and 
 # competence on the probability of autochthonous transmission at the average 
 # temperature in Dubai, Beirut, Jeddah, Mumbai, Guangzhou and Bangkok. 
 ################################################################################
@@ -265,5 +266,6 @@ all_comp_dens_anot <- annotate_figure(all_comp_dens_plots , legend,
 
 
 
-ggsave(plot=all_comp_dens_anot , filename="Figure_10.png", height = 15, width =12 )
+ggsave(plot=all_comp_dens_anot , filename="Sup_figure_2.png", height = 15, width =12 )
+  
   
