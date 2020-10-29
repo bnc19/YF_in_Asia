@@ -3,7 +3,8 @@
 # Script for quantifying the risk of yellow fever case introductions in Asia 
 ################################################################################
 
-
+#install.packages(c("epiflows", "readxl", "dplyr", "tidyr", "tibble", "ggplot2",
+#                  "cowplot", "grid", "gridExtra", "ggpubr", "ggsci", "ggthemes", "reshape2"))
 
 ################################################################################
 # Preamble
@@ -26,7 +27,7 @@ library(reshape2)
 
 
 # Set working directory 
-setwd("/Users/bethancracknelldaniels/Desktop/MSc project readings/YF in Asia Project")
+ setwd("~/Desktop/Manuscript/YF_in_Asia-master")
 
 
 # Data  
@@ -44,7 +45,7 @@ source("R/FUN_YF_introductions.R")
 
 ################################################################################
 # Tidy data and create a flow for each endemic country 
-# detailing passanger movement 
+# detailing passenger movement 
 ################################################################################
 
 # Identifying variable 
@@ -116,52 +117,11 @@ list_country_epiflow_results[[26]] <- aggregate(list_country_epiflow_results[[26
 
 countries_at_risk <- select_at_risk(list_country_epiflow_results)
 
-countries_at_risk[20, 1] <- c("UAE") # rename united arab emirates
+countries_at_risk[20, 1] <- c("UAE") # rename United Arab Emirates
 
 
 countries_at_risk <- rename(countries_at_risk, "Country" = Group.1)
 
-
-################################################################################
-# Figure 4: Mean (point) and 95% confidence intervals (bar) of the total 
-# predicted number of introductions of yellow fever into Asian countries 
-# from endemic countries during 2016. 
-################################################################################
-
-
-countrys_at_risk_plot <- ggplot(countries_at_risk, aes(y = mean_cases, x = Country)) +
-  geom_point(size = 1) +
-  geom_errorbar(aes(ymin = lower_limit_95CI, ymax = upper_limit_95CI), width = .2) +
-  xlab("Asian country") + 
-  theme_hc(base_size = 16) +
-  scale_y_continuous(limits=c(0,45), breaks=seq(0,50,5)) + 
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=0.5)) + 
-  theme(axis.title.y=element_text(angle=90, vjust=1.5, hjust=0.3, size = 18)) + 
-  labs(y = "Estimated number of introductions")
-
-ggsave("Figure.4.png", height = 7, width = 11)
-
-
-
-################################################################################
-# Select endemic countries that are the source of yellow fever case 
-# introductions in Asia 
-################################################################################
-
-risk_by_source <- lapply(1:48, function(i){select_endem(list_country_epiflow_results[[i]], Endemic_countries[i])})
-
-risk_by_ec_country <- bind_rows(risk_by_source)
-
-################################################################################
-# Figure 5: Mean (point) and 95% confidence intervals (bars) of the predicted 
-# number of introductions of yellow fever into Asian countries during 2016, 
-# broken down by endemic country
-################################################################################
-
-
-endemic_source_plot <- plot_endemic_source (risk_by_ec_country)
-
-ggsave(plot=endemic_source_plot , filename="Figure.5.png", height = 12, width =11)
 
 
 ################################################################################
@@ -255,12 +215,14 @@ SEA_airport<-  filter(airports_risk , `Asian_countries` %in% SEA )
 ME_airport <-  filter(airports_risk , `Asian_countries` %in% ME  )
 
 ################################################################################
-# Figure 6: Mean and 95% confidence intervals of the total predicted number of 
+# Figure 1: Mean and 95% confidence intervals of the total predicted number of 
 # introductions of yellow fever into A) Airports in South and East Asia and
 # B) Airports in West Asia and the Middle East. 
 ################################################################################
 
 airport_plots <- plot_airport(SEA_airport,ME_airport)
 
-ggsave(plot=airport_plots, filename="Figure.6.png", height = 11, width = 11)
+ggsave(plot=airport_plots, filename="Figure.1.png", height = 11, width = 11)
+
+
 
