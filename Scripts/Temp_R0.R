@@ -27,7 +27,7 @@ library(reshape2)
 
 
 # Set working directory 
-setwd("/Users/bethancracknelldaniels/Desktop/MSc project readings/YF in Asia Project")
+# setwd("/Users/bethancracknelldaniels/Desktop/MSc project readings/YF in Asia Project")
 
 # Data 
 
@@ -75,7 +75,7 @@ mosq_person_ME <- 0.13
 vec_human_transmission <- 0.25
 
 
-# Estiamte R0_VH and R0_HV for all locations at the average, minimum and maximum temperature 
+# Estimate R0_VH and R0_HV for all locations at the average, minimum and maximum temperature 
 
 
 avg_R0_VH <- sapply(airport_introductions $Airport, function(x){est_R0_VH(x, temp_variables_average) }) 
@@ -94,7 +94,7 @@ max_R0_HV<- sapply(airport_introductions $Airport, function(x){est_R0_HV_mean(x,
 
 
 
-# Estiamte R0 for all locations 
+# Estimate R0 for all locations 
 
 
 R0_estimates_avg_temp <- sapply(airport_introductions $Airport, function(x){est_R0(x, 10000, temp_variables_average) })  #apply function to all airport codes 
@@ -108,79 +108,93 @@ max_R0 <- tidy_R0(R0_estimates_max_temp)
 
 list_R0 <-list(avg_R0, min_R0, max_R0  )
 
-# Plot R0 estimates 
+all_R0_values <- sort_temp(temperature, list_R0, airport_introductions)
 
-SEA_R0_estimates <- lapply(1:3, function(i){plot_SEA_R0(list_R0[[i]], SEA)} )
-ME_R0_estimates <- lapply(1:3, function(i){plot_ME_R0(list_R0[[i]], ME)} )
-       
-################################################################################
-# Figure 7: Mean (point) and 95% confidence intervals (bars) of temperature 
-# dependent R0 estimates for cities predicted to be at risk of yellow fever 
-# introduction in A) South and East Asia and B) West Asia and the Middle East. 
-################################################################################
+# Filter by region 
 
-avg_R0_plots <- plot_grid(SEA_R0_estimates[[1]] , ME_R0_estimates[[1]] , ncol = 1, align = "h",labels = c("A", "B"),  label_size = 20)
-
-avg_R0_plots_annot <- annotate_figure(avg_R0_plots, left = text_grob(" ", rot = 90, size = 18), 
-                                   bottom = text_grob("City", size = 18, vjust = 0))
-
-ggsave(plot=avg_R0_plots_annot, filename="figure_7.png", height = 11, width = 11)
+ME_R0_all_temp <- filter(all_R0_values, Airport %in% ME_code)
+SEA_R0_all_temp <- filter(all_R0_values, Airport %in% SEA_code)
 
 
-################################################################################
-# Sensitivity analysis on the impact of temperature on R0 estimates 
-################################################################################
+# Colours for graph
+
+graph_colours <- c("#006A40CC", "#FF9966", "#75B41ECC", "#FF0000", "#0099FF" ,"#8AB8CFCC", "#007E7FCC" ,
+                   "#D95F02", "#000000" , "#F2990CCC", "#5A5895CC" ,"#E7298A" ,"#0099cc", "#660099", 
+                   "#660000", "#FF99cc")
 
 
-temp_range <- c(-13:44)  # temp range of locations in Asia 
+# Plot R0 estimates be region 
 
-temp_sens <- temp_param_sens(temp_range) # estimate parameter values for temp range
-
-
-all_R0_estimates_sens<- sapply(temp_range, function(x){est_R0_sen(x, 10000, temp_sen) }) # estimate R0 for temp range
-
-all_R0_estimates_sens[is.na(all_R0_estimates_sens)] <- 0  #set any NA to 0 
-
-
-R0_sensitivity <- tidy_data(all_R0_estimates_sens, temp_range) # tidy data
-R0_sensitivity<- rename(R0_sensitivity, Temperature = Variable )
-R0_sensitivity$Temperature <- as.numeric(R0_sensitivity$Temperature )
-
-
-################################################################################
-# Appendix C: Distribution of R0 across the range of temperatures at 
-# the at-risk cities in Asia. 
-################################################################################
-
-sensitivity_R0_plot <- ggplot(R0_sensitivity) + 
-  geom_ribbon(aes(x=Temperature,ymin=lower_CI,ymax=upper_CI), color = "black", fill = "transparent", size = 0.2) +
-  geom_line(aes(x=Temperature,y= mean), size = 0.6) +
-  theme(legend.position="none") + 
-  xlab("Temperature (°C)") + 
+ME_R0_all_temp_plot <- ggplot(ME_R0_all_temp , aes(y = mean, x = temperature)) +
+  geom_point(size = 3, aes(colour= City, shape = `Temperature (degree Celsius)`)) + 
+  geom_errorbar(aes(ymin = lower_CI, 
+                    ymax = upper_CI, 
+                    colour= City), width = .25)  +
+  xlab("") + 
   ylab("R0") + 
-  theme_hc(base_size = 24) + 
-  scale_y_continuous(limits=c(0,7),breaks=seq(0,7,1)) + 
-  scale_x_continuous(limits = c(-10,45),breaks=seq(-10,45,5)) + 
-  theme(axis.title.y = element_text(vjust = 0.5, hjust=0.3, angle = 0))
+  theme_hc(base_size = 18) + 
+  scale_y_continuous(limits=c(0,12.5),breaks=seq(0,12.5,1))+ 
+  scale_x_continuous(limits=c(-15,45),breaks=seq(-15,45,5))+ 
+  theme(axis.text.x = element_text(angle = 0, vjust = 0.5, hjust=0.5), 
+        axis.title.y = element_text(vjust = 0.5, hjust=0.3, angle = 0))+ 
+  scale_color_manual( values = c(graph_colours)) +
+  theme(legend.position="right")+ 
+  guides(shape = FALSE)  
+
+
+SEA_R0_all_tem<- ggplot(SEA_R0_all_temp , aes(y = mean, x = temperature)) +
+  geom_point(size = 3, aes(colour= City, shape = `Temperature (degree Celsius)`)) + 
+  geom_errorbar(aes(ymin = lower_CI, 
+                    ymax = upper_CI, 
+                    colour= City), width = .25)  +
+  xlab("") + 
+  ylab("R0") + 
+  theme_hc(base_size = 18) + 
+  scale_y_continuous(limits=c(0,13),breaks=seq(0,12.5,1))+ 
+  scale_x_continuous(limits=c(-15,45),breaks=seq(-15,45,5))+ 
+  theme(axis.text.x = element_text(angle = 0, vjust = 0.5, hjust=0.5), 
+        axis.title.y = element_text(vjust = 0.5, hjust=0.3, angle = 0))+ 
+  scale_color_manual( values = c(graph_colours)) +
+  theme(legend.position="right") + 
+  guides(shape = FALSE)  
 
 
 
-ggsave(plot=sensitivity_R0_plot, filename="Appendix_C.png", height = 9, width = 11)
+# Get legend 
+l <- ggplot(SEA_R0_all_temp , aes(y = mean, x = temperature)) +
+  geom_point(size = 3, aes(colour= City, shape = `Temperature (degree Celsius)`)) + 
+  geom_errorbar(aes(ymin = lower_CI, 
+                    ymax = upper_CI, 
+                    colour= City), width = .25)  +
+  xlab("") + 
+  ylab("R0") + 
+  theme_hc(base_size = 18) + 
+  scale_y_continuous(limits=c(0,13),breaks=seq(0,12.5,1))+ 
+  scale_x_continuous(limits=c(-15,45),breaks=seq(-15,45,5))+ 
+  theme(axis.text.x = element_text(angle = 0, vjust = 0.5, hjust=0.5), 
+        axis.title.y = element_text(vjust = 0.5, hjust=0.3, angle = 0))+ 
+  scale_color_manual( values = c(graph_colours)) + 
+  guides(col = FALSE)  
+
+lege <- get_legend(l)
+
 
 
 ################################################################################
-# Appendix D: Temperature dependent R0 estimates for South and East Asia at 
-# A) the minimum temperature and B) maximum temperature
+# Supplementary figure 1: Mean (point) and 95% confidence intervals(bars) of 
+# temperature dependent R0 estimates in cities predicted to be at risk of yellow 
+# fever introduction in A) South and East Asia and B) West Asia and the Middle
+# East. 
 ################################################################################
 
-R0_plots_min_max<- plot_grid(SEA_R0_estimates[[2]] , SEA_R0_estimates[[3]] ,
-                          ME_R0_estimates[[2]] , ME_R0_estimates[[3]] ,
-                          ncol = 2, align = "h", labels = c("A", "C", "B", "D"),  label_size = 20)
+all_R0_plots <- plot_grid( ME_R0_all_temp_plot ,SEA_R0_all_tem , ncol = 1, align = "h",labels = c("A", "B"),  label_size = 20)
+
+plots_legend <- plot_grid (all_R0_plots, lege, ncol = 1, rel_heights  = c(3,.1))
 
 
-R0_plots_min_max_annot <- annotate_figure(R0_plots_min_max,
-                                    bottom = text_grob("City", size = 18, vjust = 0))
+all_R0_plots_annot <- annotate_figure(plots_legend, left = text_grob(" ", rot = 90, size = 18), 
+                                      bottom = text_grob("Temperature (degree Celsius)", size = 18, vjust = 0))
 
+ggsave(plot=plots_legend, filename="Sup_figure_1.png", height = 12, width = 15)
 
-ggsave(plot=R0_plots_min_max_annot , filename="Appendix_D.png", height = 15, width = 24)
 
