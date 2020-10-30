@@ -185,6 +185,8 @@ plots <- ggplot(x) +
   return(plots)
   
 } # plot 
+  
+} # plot 
 
 add_legend <- function() {
 l <- ggplot(list_immunity_k[[1]]) + 
@@ -195,11 +197,12 @@ l <- ggplot(list_immunity_k[[1]]) +
                 group = `dispersion parameter (k)`), size = 0.6, show.legend = T )+
   xlab("") + 
   ylab("") + 
-  theme_hc(base_size = 18) + 
+  theme_hc(base_size = 24) + 
   scale_y_continuous(limits=c(0,1),breaks=seq(0,1,0.2)) + 
   scale_x_continuous(limits=c(0,1),breaks=seq(0,1,0.2)) +
   ggtitle("city") + 
-  geom_segment(x = 0, xend = 5, y = 0.5, yend = 0.5, size = 0.5, linetype = 3) 
+  geom_segment(x = 0, xend = 5, y = 0.5, yend = 0.5, size = 0.5, linetype = 3) + 
+  theme(legend.position = c(.60, .80), legend.text = element_text( size = 24))
 
 leg <- get_legend(l)
 
