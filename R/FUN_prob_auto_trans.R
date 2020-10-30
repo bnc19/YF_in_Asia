@@ -113,6 +113,7 @@ tidy_auto <- function (prob_transmission, airport_code, city) {
 # Funciton to plot the probability of autochthonous transmission for all cities 
 ################################################################################
 
+
 plot_auto_cities <- function(x, city){
   
   x$color <- ifelse(x$upper_CI >= 0.5, 'red', 'black')  # if upper 95% CI is above 0.5 code as red 
@@ -124,10 +125,13 @@ plot_auto_cities <- function(x, city){
     ggtitle(city) + 
     ylab("") + 
     xlab("") + 
-    theme_hc(base_size = 16) +
+    theme_hc(base_size = 18) +
     scale_y_continuous(limits=c(0,1),breaks=seq(0,1,0.2))+ 
     theme(axis.text.x = element_text(angle = 0, vjust = 0.5, hjust=0.5), 
-          axis.title.y = element_text(vjust = 0.5, hjust=0.3, angle = 0))  }
+          axis.title.y = element_text(vjust = 0.5, hjust=0.3, angle = 0)) +
+    geom_segment(x = 0, xend = 5, y = 0.5, yend = 0.5, size = 0.3, linetype = 2, color = "red")
+    }
+
 
 
 
