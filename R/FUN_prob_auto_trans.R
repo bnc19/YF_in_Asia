@@ -8,7 +8,7 @@
 
 
 ################################################################################
-# Functions to estimate the probabality of autochthonous results
+# Functions to estimate the probability of autochthonous results
 ################################################################################
 
 prob_auto<- function(n, mean_R0_HV , sd_R0_HV,R0_VH,  seeds, sd_seeds, k = 0.1, immunity = 0){
@@ -38,7 +38,7 @@ prob_auto<- function(n, mean_R0_HV , sd_R0_HV,R0_VH,  seeds, sd_seeds, k = 0.1, 
   # extinction at 0 generations
   not_gv_0 <- 1 - gv_0                         #probability of an infectious human producing at least one infectious vector 
   
-
+  
   R0_VH <-  ifelse(R0_VH <0 , 0, R0_VH)    # no negative values
   
   Reff <-  R0_VH * (1 - (immunity) )
@@ -89,7 +89,7 @@ tidy_data <- function(x, name_col) {
 
 tidy_auto <- function (prob_transmission, airport_code, city) {
   
-
+  
   tidy <- tidy_data(prob_transmission, airport_code) # reformat 
   tidy <- rename(tidy, Airport = Variable)
   
@@ -101,8 +101,8 @@ tidy_auto <- function (prob_transmission, airport_code, city) {
   
   
   out$city <- as.character(out$city )
-
-
+  
+  
   return(out)
   
 } # format data
@@ -110,9 +110,8 @@ tidy_auto <- function (prob_transmission, airport_code, city) {
 
 
 ################################################################################
-# Funciton to plot the probability of autochthonous transmission for all cities 
+# Function to plot the probability of autochthonous transmission for all cities 
 ################################################################################
-
 
 plot_auto_cities <- function(x, city){
   
@@ -130,13 +129,12 @@ plot_auto_cities <- function(x, city){
     theme(axis.text.x = element_text(angle = 0, vjust = 0.5, hjust=0.5), 
           axis.title.y = element_text(vjust = 0.5, hjust=0.3, angle = 0)) +
     geom_segment(x = 0, xend = 5, y = 0.5, yend = 0.5, size = 0.3, linetype = 2, color = "red")
-    }
-
+}
 
 
 
 ################################################################################
-# Funtion to format the results of the immunity and dispersion parameter 
+# Function to format the results of the immunity and dispersion parameter 
 # sensitivity analyses 
 ################################################################################
 
@@ -149,7 +147,7 @@ format_immunity_k_data <- function(x) {
   
   index <- order(add_sufix)
   suffix <- add_sufix[index]  
-    
+  
   temp <- rep(c("mean", "lower", "upper"), 4) # identify output 
   colnames_temp <-paste(temp, suffix, sep="_")  
   
@@ -170,47 +168,45 @@ format_immunity_k_data <- function(x) {
 ################################################################################
 
 plot_immunity_k <- function(x, city) {
-plots <- ggplot(x) + 
-  geom_ribbon(aes(x=Immunity,ymin=Lower,ymax=Upper, color = `dispersion parameter (k)`, 
-                  group = `dispersion parameter (k)`, fill = `dispersion parameter (k)`),  size = 0.2, alpha = .2, show.legend = FALSE) +
-  geom_line(aes(x=Immunity,y= Mean, color = `dispersion parameter (k)`, 
-                group = `dispersion parameter (k)`), size = 0.6, show.legend = FALSE )+
-  xlab("") + 
-  ylab("") + 
-  theme_hc(base_size = 18) + 
-  scale_y_continuous(limits=c(0,1),breaks=seq(0,1,0.2)) + 
-  scale_x_continuous(limits=c(0,1),breaks=seq(0,1,0.2)) +
-  ggtitle(city) + 
-  geom_segment(x = 0, xend = 5, y = 0.5, yend = 0.5, size = 0.5, linetype = 3) +
-  geom_segment(x = 0.8, xend = 0.8, y = 0, yend = 5, size = 0.5, linetype = 3) 
+  plots <- ggplot(x) + 
+    geom_ribbon(aes(x=Immunity,ymin=Lower,ymax=Upper, color = `dispersion parameter (k)`, 
+                    group = `dispersion parameter (k)`, fill = `dispersion parameter (k)`),  size = 0.2, alpha = .2, show.legend = FALSE) +
+    geom_line(aes(x=Immunity,y= Mean, color = `dispersion parameter (k)`, 
+                  group = `dispersion parameter (k)`), size = 0.6, show.legend = FALSE )+
+    xlab("") + 
+    ylab("") + 
+    theme_hc(base_size = 18) + 
+    scale_y_continuous(limits=c(0,1),breaks=seq(0,1,0.2)) + 
+    scale_x_continuous(limits=c(0,1),breaks=seq(0,1,0.2)) +
+    ggtitle(city) + 
+    geom_segment(x = 0, xend = 5, y = 0.5, yend = 0.5, size = 0.5, linetype = 3) +
+    geom_segment(x = 0.8, xend = 0.8, y = 0, yend = 5, size = 0.5, linetype = 3) 
   
- 
+  
   
   return(plots)
   
 } # plot 
-  
-} # plot 
 
 add_legend <- function() {
-l <- ggplot(list_immunity_k[[1]]) + 
-  geom_ribbon(aes(x=Immunity,ymin=Lower,ymax=Upper, color = `dispersion parameter (k)`, 
-                  group = `dispersion parameter (k)`, fill = `dispersion parameter (k)`),  
-              size = 0.2, alpha = .2, show.legend = FALSE) +
-  geom_line(aes(x=Immunity,y= Mean, color = `dispersion parameter (k)`, 
-                group = `dispersion parameter (k)`), size = 0.6, show.legend = T )+
-  xlab("") + 
-  ylab("") + 
-  theme_hc(base_size = 24) + 
-  scale_y_continuous(limits=c(0,1),breaks=seq(0,1,0.2)) + 
-  scale_x_continuous(limits=c(0,1),breaks=seq(0,1,0.2)) +
-  ggtitle("city") + 
-  geom_segment(x = 0, xend = 5, y = 0.5, yend = 0.5, size = 0.5, linetype = 3) + 
-  theme(legend.position = c(.60, .80), legend.text = element_text( size = 24))
-
-leg <- get_legend(l)
-
-return(leg)
+  l <- ggplot(list_immunity_k[[1]]) + 
+    geom_ribbon(aes(x=Immunity,ymin=Lower,ymax=Upper, color = `dispersion parameter (k)`, 
+                    group = `dispersion parameter (k)`, fill = `dispersion parameter (k)`),  
+                size = 0.2, alpha = .2, show.legend = FALSE) +
+    geom_line(aes(x=Immunity,y= Mean, color = `dispersion parameter (k)`, 
+                  group = `dispersion parameter (k)`), size = 0.6, show.legend = T )+
+    xlab("") + 
+    ylab("") + 
+    theme_hc(base_size = 24) + 
+    scale_y_continuous(limits=c(0,1),breaks=seq(0,1,0.2)) + 
+    scale_x_continuous(limits=c(0,1),breaks=seq(0,1,0.2)) +
+    ggtitle("city") + 
+    geom_segment(x = 0, xend = 5, y = 0.5, yend = 0.5, size = 0.5, linetype = 3) + 
+    theme(legend.position = c(.60, .80), legend.text = element_text( size = 24))
+  
+  leg <- get_legend(l)
+  
+  return(leg)
 } # legend
 
 
@@ -308,7 +304,7 @@ tidy_and_name_comp_den <- function(x) {
                       values_to = c("Mean", "Lower", "Upper"),
                       names_prefix = c("mean_", "lower_", "upper_"))
   
- out$Competency <- as.numeric(out$Competency )
+  out$Competency <- as.numeric(out$Competency )
   
   return(out)
 } #  tidy and name mosquito sensitivity analysis output 
