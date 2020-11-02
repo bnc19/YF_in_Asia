@@ -68,23 +68,25 @@ prob_auto<- function(n, mean_R0_HV , sd_R0_HV,R0_VH,  seeds, sd_seeds, k = 0.1, 
 } # estimate probabilities
 
 
+
 tidy_data <- function(x, name_col) {
-  
-  x [is.na(x )] <- 0
-  write.csv(x, file = "x")
-  read <- column_to_rownames(read.csv("x"), "X")
-  
-  colnames(read) <- name_col #name columns temperature   
-  df <- as.data.frame(t(read))  # transpose 
-  
-  output <- df %>%  
-    rownames_to_column(var = "Variable")
-  
-  
-  
-  return(output)
-  
+
+x [is.na(x )] <- 0
+test <- as.data.frame(t(x))  # transpose 
+rownames(test) <- name_col #name columns immunity    
+test2 <- test %>%  
+  rownames_to_column(var = "Variable")
+
+
+test2[ ,-1] <- apply(test2[ , -1], 2,            # Specify own function within apply
+                    function(x) as.numeric(as.character(x)))
+return(test2)
+
 }   # tidy data
+
+
+
+
 
 
 tidy_auto <- function (prob_transmission, airport_code, city) {

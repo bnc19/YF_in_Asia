@@ -154,8 +154,8 @@ list_prob_imm_het <- lapply(1:5, function(k) {sapply(1:101, function(i) {sapply(
 format_list_imm <- lapply(1:5, function(i) {tidy_data(list_prob_imm_het[[i]] , immunity )} )
 
 
-list_immunity_k <- lapply(1:5, function(i) {format_immunity_k_data(format_list_imm[[i]])} )
 
+list_immunity_k <- lapply(1:5, function(i) {format_immunity_k_data(format_list_imm[[i]])} )
 
 
 leg <- add_legend()
