@@ -169,18 +169,20 @@ est_R0 <- function(airport.code, n, temp_variables) { # estimate mena and 95% CI
   
 }  # estimate R0 
 
-tidy_R0 <- function(x, col_names) {
+
+
+tidy_R0 <- function(x) {
   
-  x [is.na(x )] <- 0
-  write.csv(x, file = "x")
-  read <- column_to_rownames(read.csv("x"), "X")
-  
-  df <- as.data.frame(t(read))  # transpose 
-  
+  x [is.na(x )] <- 0 # remove nas
+  df <- as.data.frame(t(x))  # transpose
+
+
   output <- df %>%  
     rownames_to_column(var = "Airport")
   
   
+  output[ ,-1] <- apply(output[ , -1], 2,            # Specify own function within apply to ensure columns are numeric 
+                      function(x) as.numeric(as.character(x)))
   return(output)
   
 } # tidy results 
