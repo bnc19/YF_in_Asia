@@ -140,6 +140,7 @@ plot_auto_cities <- function(x, city){
 # sensitivity analyses 
 ################################################################################
 
+
 format_immunity_k_data <- function(x) {
   tidy <- rename(x,"Immunity" = Variable )   
   
@@ -155,13 +156,14 @@ format_immunity_k_data <- function(x) {
   
   colnames(tidy)[-1] <- colnames_temp
   
-  out <- pivot_longer(tidy, cols = - `Immunity`,  
-                      names_to = "dispersion parameter (k)",
-                      values_to = c("Mean", "Lower", "Upper"),
-                      names_prefix = c("mean_", "lower_", "upper_"))
+  out <- tidy %>% pivot_longer(cols = - `Immunity`) %>% 
+    separate(name, into=c("estimate", "dispersion parameter (k)"), sep="_") %>% 
+    pivot_wider(names_from = estimate, values_from = value) %>% 
+    rename("Mean" = mean, "Lower" = lower, "Upper" = upper)
   
   return(out)
 }
+
 
 
 
