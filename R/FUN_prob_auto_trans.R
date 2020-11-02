@@ -303,10 +303,11 @@ tidy_and_name_comp_den <- function(x) {
   colnames(tidy)[-1] <- colnames_temp
   
   
-  out <- pivot_longer(tidy, cols = - `Competency`,
-                      names_to = "Female mosquitos per person",
-                      values_to = c("Mean", "Lower", "Upper"),
-                      names_prefix = c("mean_", "lower_", "upper_"))
+  out <- tidy %>% pivot_longer(cols = - `Competency`) %>% 
+    separate(name, into=c("estimate", "Female mosquitos per person"), sep="_") %>% 
+    pivot_wider(names_from = estimate, values_from = value) %>% 
+    rename("Mean" = mean, "Lower" = lower, "Upper" = upper)
+
   
   out$Competency <- as.numeric(out$Competency )
   
