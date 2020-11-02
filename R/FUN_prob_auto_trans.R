@@ -71,16 +71,16 @@ prob_auto<- function(n, mean_R0_HV , sd_R0_HV,R0_VH,  seeds, sd_seeds, k = 0.1, 
 
 tidy_data <- function(x, name_col) {
 
-x [is.na(x )] <- 0
-test <- as.data.frame(t(x))  # transpose 
-rownames(test) <- name_col #name columns immunity    
-test2 <- test %>%  
+x [is.na(x )] <- 0 # remove nas
+df <- as.data.frame(t(x))  # transpose 
+rownames(df) <- name_col #name columns   
+df_2 <- df %>%  
   rownames_to_column(var = "Variable")
 
 
-test2[ ,-1] <- apply(test2[ , -1], 2,            # Specify own function within apply
+df_2[ ,-1] <- apply(df_2[ , -1], 2,            # Specify own function within apply to ensure columns are numeric 
                     function(x) as.numeric(as.character(x)))
-return(test2)
+return(df_2)
 
 }   # tidy data
 
