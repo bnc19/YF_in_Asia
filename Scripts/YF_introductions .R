@@ -222,7 +222,7 @@ ME_airport <-  filter(airports_risk , `Asian_countries` %in% ME  )
 
 airport_plots <- plot_airport(SEA_airport,ME_airport)
 
-ggsave(plot=airport_plots, filename="Figure.1.png", height = 11, width = 11)
+ggsave(plot=airport_plots, filename="Figure.1.jpg",height = 18, width = 13, units = "cm", dpi = 600)
 
 
 

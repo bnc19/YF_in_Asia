@@ -120,13 +120,13 @@ plot_auto_cities <- function(x, city){
   x$color <- ifelse(x$upper_CI >= 0.5, 'red', 'black')  # if upper 95% CI is above 0.5 code as red 
   
   ggplot(x  , aes(y = mean, x = temp)) +   # plot
-    geom_point(size = 2, color =x$color ) +
+    geom_point(size = 0.5, color =x$color ) +
     geom_errorbar(aes(ymin = lower_CI ,
                       ymax = upper_CI), color = x$color,  width = .25) +
     ggtitle(city) + 
     ylab("") + 
     xlab("") + 
-    theme_hc(base_size = 18) +
+    theme_hc(base_size = 7.5) +
     scale_y_continuous(limits=c(0,1),breaks=seq(0,1,0.2))+ 
     theme(axis.text.x = element_text(angle = 0, vjust = 0.5, hjust=0.5), 
           axis.title.y = element_text(vjust = 0.5, hjust=0.3, angle = 0)) +
@@ -179,7 +179,7 @@ plot_immunity_k <- function(x, city) {
                   group = `dispersion parameter (k)`), size = 0.6, show.legend = FALSE )+
     xlab("") + 
     ylab("") + 
-    theme_hc(base_size = 18) + 
+    theme_hc(base_size = 10) + 
     scale_y_continuous(limits=c(0,1),breaks=seq(0,1,0.2)) + 
     scale_x_continuous(limits=c(0,1),breaks=seq(0,1,0.2)) +
     ggtitle(city) + 
@@ -201,12 +201,12 @@ add_legend <- function() {
                   group = `dispersion parameter (k)`), size = 0.6, show.legend = T )+
     xlab("") + 
     ylab("") + 
-    theme_hc(base_size = 24) + 
+    theme_hc(base_size = 10) + 
     scale_y_continuous(limits=c(0,1),breaks=seq(0,1,0.2)) + 
     scale_x_continuous(limits=c(0,1),breaks=seq(0,1,0.2)) +
     ggtitle("city") + 
     geom_segment(x = 0, xend = 5, y = 0.5, yend = 0.5, size = 0.5, linetype = 3) + 
-    theme(legend.position = c(.60, .80), legend.text = element_text( size = 24))
+    theme(legend.position = c(.60, .80), legend.text = element_text( size = 10))
   
   leg <- get_legend(l)
   

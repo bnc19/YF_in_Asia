@@ -87,44 +87,45 @@ return(countrys_at_risk)
 ################################################################################
 
 plot_airport <- function (SEA_airport,ME_airport) {
-  SEA_risk <- rename(SEA_airport, "South and East Asian Countries"  = Asian_countries)
-  ME_risk <- rename(ME_airport, "West Asia and Middle Eastern Countries"  = Asian_countries)
+  SEA_risk <- rename(SEA_airport, "Asian Countries"  = Asian_countries)
+  ME_risk <- rename(ME_airport, "Asian Countries"  = Asian_countries)
   
   # countries in south and east asia 
   
   SEA_risk_plot <- ggplot(SEA_risk, aes(y = mean_cases, x = Airport)) +
-    geom_point(size = 2, aes(colour= `South and East Asian Countries`)) +
-    geom_errorbar(aes(ymin = lower_limit_95CI, ymax = upper_limit_95CI, colour=`South and East Asian Countries`), width = .25) + 
+    geom_point(size = 0.5, aes(colour= `Asian Countries`)) +
+    geom_errorbar(aes(ymin = lower_limit_95CI, ymax = upper_limit_95CI, colour=`Asian Countries`), width = .25) + 
     xlab(" ") + 
     ylab(" ") + 
-    theme_hc(base_size = 14) + 
+    theme_hc(base_size = 8) + 
     scale_color_npg() + 
     scale_y_continuous(limits=c(0,45),breaks=seq(0,40,5))+ 
-    theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=0.5))
+    theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=0.5))+ 
+    theme(legend.text = element_text( size = 5.5))
   
   
   
   #countries in middle east and west asia 
   
   ME_risk_plot <- ggplot(ME_risk, aes(y = mean_cases, x = Airport)) +
-    geom_point(size = 2, aes(colour=`West Asia and Middle Eastern Countries`)) +
-    geom_errorbar(aes(ymin = lower_limit_95CI, ymax = upper_limit_95CI, colour=`West Asia and Middle Eastern Countries`), width = .25) +
+    geom_point(size = 0.5, aes(colour=`Asian Countries`)) +
+    geom_errorbar(aes(ymin = lower_limit_95CI, ymax = upper_limit_95CI, colour=`Asian Countries`), width = .25) +
     xlab(" ") + 
     ylab(" ") + 
-    theme_hc(base_size = 14) + 
+    theme_hc(base_size = 8) + 
     scale_color_npg() + 
     scale_y_continuous(limits=c(0,45), breaks=seq(0,40,5)) + 
-    theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=0.5))
-  
+    theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=0.5))+ 
+    theme(legend.text = element_text( size = 5.5))
   
   
   #combine using cowplot
   
-  airport_plots <- plot_grid(SEA_risk_plot, ME_risk_plot, ncol = 1, align = "h", labels = c("A", "B"),  label_size = 20)
+  airport_plots <- plot_grid(SEA_risk_plot, ME_risk_plot, ncol = 1, align = "h", labels = c("A", "B"),  label_size = 10)
   
   
-  out <- annotate_figure(airport_plots , left = text_grob("Estimated number of introductions", rot = 90, size = 18),
-                         bottom = text_grob("Airport", size = 18, vjust = 0))
+  out <- annotate_figure(airport_plots , left = text_grob("Estimated number of introductions", rot = 90, size = 10),
+                         bottom = text_grob("Airport", size = 10, vjust = 0))
   
   return(out)
   

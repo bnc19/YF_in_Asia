@@ -113,11 +113,11 @@ all_auto_plots <- do.call("grid.arrange", c(list_auto_plots, ncol=5))
 
 all_auto_plots_anot <- annotate_figure(all_auto_plots, 
                                        left = text_grob("Probability of autochthonous transmission", 
-                                       rot = 90, size = 22, vjust = 0.3, hjust = 0.3), 
-                                       bottom = text_grob("Temperature", size = 22))
+                                       rot = 90, size = 10, vjust = 0.3, hjust = 0.3), 
+                                       bottom = text_grob("Temperature", size = 10))
 
 
-ggsave(plot=all_auto_plots_anot , filename="Figure_2.png", height = 17, width = 12)
+ggsave(plot=all_auto_plots_anot , filename="Figure_2.jpg", height = 20, width = 13, units = "cm", dpi = 600)
 
 
 
@@ -175,19 +175,19 @@ immunity_k_plots <- lapply(1:5, function(i){
 immunity_k_grid <- plot_grid(immunity_k_plots[[3]], immunity_k_plots[[4]], 
                              immunity_k_plots[[1]], immunity_k_plots[[5]],
                              immunity_k_plots[[2]], 
-                             leg, ncol = 2 , labels = c("A", "B") , label_size  = 24) 
+                             leg, ncol = 2 , labels = c("A", "B") , label_size  = 14) 
 
 
 
 immunity_k_annot  <- annotate_figure(immunity_k_grid , 
                                      left = text_grob("Probability of autochthonous transmission", 
-                                     rot = 90, size = 22, vjust = 0.3, hjust = 0.3), 
-                                     bottom = text_grob("Proportion of the population assumed immune to yellow fever", size = 22))
+                                     rot = 90, size = 10, vjust = 0.3, hjust = 0.3), 
+                                     bottom = text_grob("Proportion of the population assumed immune to yellow fever", size = 10))
 
                         
 
 
-ggsave(plot=immunity_k_annot , filename="Figure_3.png", height = 16, width = 12)
+ggsave(plot=immunity_k_annot , filename="Figure_3.jpg",height = 20, width = 13, units = "cm", dpi = 600)
 
 
 
@@ -266,6 +266,6 @@ all_comp_dens_anot <- annotate_figure(all_comp_dens_plots , legend,
 
 
 
-ggsave(plot=all_comp_dens_anot , filename="Sup_figure_2.png", height = 15, width =12 )
+ggsave(plot=all_comp_dens_anot , filename="Sup_figure_2.jpg", height = 15, width =12 )
   
   

@@ -195,6 +195,6 @@ plots_legend <- plot_grid (all_R0_plots, lege, ncol = 1, rel_heights  = c(3,.1))
 all_R0_plots_annot <- annotate_figure(plots_legend, left = text_grob(" ", rot = 90, size = 18), 
                                       bottom = text_grob("Temperature (degree Celsius)", size = 18, vjust = 0))
 
-ggsave(plot=plots_legend, filename="Sup_figure_1.png", height = 12, width = 15)
+ggsave(plot=plots_legend, filename="Sup_figure_1.jpg", height = 12, width = 15)
 
 
