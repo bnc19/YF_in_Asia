@@ -101,7 +101,7 @@ plot_airport <- function (SEA_airport,ME_airport) {
     scale_color_npg() + 
     scale_y_continuous(limits=c(0,35),breaks=seq(0,35,5))+ 
     theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=0.5))+ 
-    theme(legend.text = element_text( size = 5.5))
+    theme(legend.text = element_text( size = 6))
   
   
   
@@ -116,7 +116,7 @@ plot_airport <- function (SEA_airport,ME_airport) {
     scale_color_npg() + 
     scale_y_continuous(limits=c(0,35), breaks=seq(0,35,5)) + 
     theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=0.5))+ 
-    theme(legend.text = element_text( size = 5.5))
+    theme(legend.text = element_text( size = 6))
   
   
   #combine using cowplot
