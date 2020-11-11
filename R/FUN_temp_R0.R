@@ -193,7 +193,7 @@ tidy_R0 <- function(x) {
 # Function to organize R0 for all temperatures
 ################################################################################
 
-sort_temp <- function(temperature, list_R0, airport_introductions){
+sort_temp <- function(temperature, list_R0, airports_risk){
 
 average_temperature <- temperature[, c(1,13)]
 minimum_temperature <- temperature[, c(1,12)]
@@ -213,7 +213,7 @@ list_R0[[2]]$`Temperature (degree Celsius)` <- "Minimum"
 list_R0[[3]]$`Temperature (degree Celsius)` <- "Maximum"
 
 all_R0_values <- bind_rows(list_R0)
-city_airport <- airport_introductions[, c(1,7)]
+city_airport <- airports_risk[, c(1,6)]
 
 all_R0_values <- left_join(all_R0_values,city_airport)
 
