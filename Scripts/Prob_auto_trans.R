@@ -63,7 +63,7 @@ list_prob_transmission_all_temp <- lapply(1:3, function(j) {sapply(1:25, functio
 }) })
 
 
-all_cities <- avg_R0_estimates$city 
+all_cities <- sort(avg_R0_estimates$city)
 
 tidy_results <- lapply(1:3, function(i){   #tidy results 
   tidy_auto(list_prob_transmission_all_temp[[i]], avg_R0_estimates$Airport, all_cities)
@@ -87,8 +87,9 @@ auto_probabilities <- bind_rows(tidy_results)
 auto_list_cities <- auto_probabilities %>%
   group_by(city) %>% 
   nest() %>% 
-  select(data) 
-
+  select(data)  
+ 
+auto_list_cities <- auto_list_cities[order(auto_list_cities$city),]
 
 # list of all city plots 
 
