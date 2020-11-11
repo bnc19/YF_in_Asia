@@ -99,7 +99,7 @@ plot_airport <- function (SEA_airport,ME_airport) {
     ylab(" ") + 
     theme_hc(base_size = 8) + 
     scale_color_npg() + 
-    scale_y_continuous(limits=c(0,45),breaks=seq(0,40,5))+ 
+    scale_y_continuous(limits=c(0,35),breaks=seq(0,35,5))+ 
     theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=0.5))+ 
     theme(legend.text = element_text( size = 5.5))
   
@@ -114,7 +114,7 @@ plot_airport <- function (SEA_airport,ME_airport) {
     ylab(" ") + 
     theme_hc(base_size = 8) + 
     scale_color_npg() + 
-    scale_y_continuous(limits=c(0,45), breaks=seq(0,40,5)) + 
+    scale_y_continuous(limits=c(0,35), breaks=seq(0,35,5)) + 
     theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=0.5))+ 
     theme(legend.text = element_text( size = 5.5))
   
