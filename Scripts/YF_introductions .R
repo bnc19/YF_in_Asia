@@ -27,7 +27,7 @@ library(reshape2)
 
 
 # Set working directory 
- setwd("~/Desktop/Manuscript/YF_in_Asia-master")
+# setwd("~/Desktop/Manuscript/YF_in_Asia-master")
 
 
 # Data  
@@ -35,8 +35,6 @@ asia_flows <- read.csv("DATA/asia_flows.country.csv")
 locations <- read.csv("DATA/asia_ec_locations_airport.csv")
 locations_country <- locations[c(1:101),-1 ]
 airport_flows <- read.csv("DATA/asia_flows_airport.csv")[ , c(2:4)]
-
-
 
 
 # source scripts
@@ -60,7 +58,7 @@ Endemic_countries <- c("Angola", "Benin", "Burkina Faso", "Burundi", "Cameroon",
                        "French Guiana", "Guyana", "Panama", "Paraguay", "Peru", "Suriname", 
                        "Trinidad and Tobago", "Venezuela")
 
-matrix_country_flows <- sapply(1:48, function(i){ tidy_epiflows (asia_flows,Endemic_countries[i] ) } )  # Creates matrix of flows
+matrix_country_flows <- sapply(1:48, function(i){ tidy_epiflows (asia_flows, Endemic_countries[i] ) } )  # Creates matrix of flows
 
 list_country_flows <- split(matrix_country_flows, col(matrix_country_flows)) # convert to list 
 
@@ -158,9 +156,7 @@ list_epiflows_airport   <-  lapply(1:48, function(i) {make_epiflows (
   first_date = "first_date_cases",
   last_date = "last_date_cases" ) } )     
 
-# Extract duration of stay 
 
-duration_stay <- locations_airport[c(1:48), 6]
 
 
 # Estimate the number of introductions into Asian countries from each endemic country 
@@ -190,9 +186,9 @@ airports_at_risk <- select_at_risk(list_airport_epiflow_results)
 airports_at_risk <- rename(airports_at_risk, "Airport" = Group.1)
 
 
-Asian_countries <- c("India", "Jordan", "United Arab Emirates", "Bahrain", "Lebanon","Thailand" , "India",  
-                     "China","India","Saudi Arabia","Qatar",  "United Arab Emirates","Hong Kong", "India", 
-                     "South Korea", "Turkey", "Saudi Arabia", "Pakistan", "Malaysia","Kuwait", "India","Oman", 
+Asian_countries <- c("India", "United Arab Emirates", "Bahrain", "Lebanon","Thailand" , "India",  
+                     "China","India","Saudi Arabia","Qatar",  "United Arab Emirates","Hong Kong", 
+                     "South Korea", "Turkey", "Saudi Arabia", "Malaysia","Kuwait","Oman", 
                      "Saudi Arabia","Philippines", "Japan", "China","China","Saudi Arabia","Singapore")
 
 # Add column identifying the country for each airport at risk 
@@ -207,8 +203,8 @@ airport_country <- airports_risk[, c(1,5)]
 airports_risk$Airport <- factor(airports_risk$Airport, levels = airports_risk$Airport [order(airports_risk$Asian_countries)])
 
 # Of countries at risk, divide by region in Asia (SEA: South and East Asia, ME: Middle East and West Asia)
-SEA <- c("China", "Hong Kong", "India", "Japan", "Malaysia", "Pakistan", "Philippines", "Singapore", "South Korea", "Thailand" )
-ME <- c("Bahrain", "Kuwait", "Lebanon", "Oman", "Qatar", "Saudi Arabia", "Turkey", "United Arab Emirates", "Jordan")
+SEA <- c("China", "Hong Kong", "India", "Japan", "Malaysia",  "Philippines", "Singapore", "South Korea", "Thailand" )
+ME <- c("Bahrain", "Kuwait", "Lebanon", "Oman", "Qatar", "Saudi Arabia", "Turkey", "United Arab Emirates")
 
 #Filter risk by region 
 SEA_airport<-  filter(airports_risk , `Asian_countries` %in% SEA )

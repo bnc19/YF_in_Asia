@@ -1,30 +1,26 @@
-"","Airport","Asian_countries","mean_cases","lower_limit_95CI","upper_limit_95CI","sd","City"
-"1","AMD","India",1.14,0.77,1.65,0.22,"Ahmedabad"
-"2","AMM","Jordan",0.81,0.54,1.18,0.16,"Amman"
-"3","AUH","United Arab Emirates",1.44,0.97,2.09,0.28,"Abu Dhabi"
-"4","BAH","Bahrain",0.81,0.54,1.18,0.16,"Manama"
-"5","BEY","Lebanon",9.03,6.09,13.17,1.77,"Beirut"
-"6","BKK","Thailand",2.52,1.7,3.67,0.4925,"Bangkok"
-"7","BOM","India",8.08,5.46,11.77,1.5775,"Mumbai"
-"8","CAN","China",11.31,7.65,16.5,2.2125,"Guangzhou"
-"9","DEL","India",4.13,2.79,6.01,0.805,"New Delhi"
-"10","DMM","Saudi Arabia",1.33,0.89,1.94,0.2625,"Dammam"
-"11","DOH","Qatar",3.49,2.35,5.09,0.685,"Doha"
-"12","DXB","United Arab Emirates",27.35,18.46,39.83,5.3425,"Dubai"
-"13","HKG","Hong Kong",3.63,2.45,5.29,0.71,"Hong Kong"
-"14","HYD","India",0.74,0.5,1.08,0.145,"Chennai"
-"15","ICN","South Korea",1.95,1.32,2.85,0.3825,"Seoul"
-"16","IST","Turkey",7.57,5.12,11.04,1.48,"Istanbul"
-"17","JED","Saudi Arabia",6.24,4.2,9.1,1.225,"Jeddah"
-"18","KHI","Pakistan",0.73,0.49,1.06,0.1425,"Karachi"
-"19","KUL","Malaysia",2.22,1.5,3.24,0.435,"Kuala Lumpur"
-"20","KWI","Kuwait",1.56,1.05,2.28,0.3075,"Kuwait City"
-"21","MAA","India",0.84,0.57,1.22,0.1625,"Hyderabad"
-"22","MCT","Oman",2.02,1.36,2.92,0.39,"Muscat"
-"23","MED","Saudi Arabia",1.16,0.78,1.69,0.2275,"Medina"
-"24","MNL","Philippines",2.13,1.44,3.11,0.4175,"Manila"
-"25","NRT","Japan",1.7,1.15,2.48,0.3325,"Tokyo"
-"26","PEK","China",9.48,6.41,13.84,1.8575,"Beijing"
-"27","PVG","China",6.7,4.53,9.77,1.31,"Shanghai"
-"28","RUH","Saudi Arabia",3.29,2.21,4.81,0.65,"Riyadh"
-"29","SIN","Singapore",0.88,0.59,1.28,0.1725,"Singapore"
+"","Airport","mean_cases","lower_limit_95CI","upper_limit_95CI","Asian_countries","City","sd"
+"1","AMD",1.04,0.75,1.36,"India","Ahmedabad",0.1525
+"2","AUH",1.3,0.96,1.68,"United Arab Emirates","Abu Dhabi",0.18
+"3","BAH",0.76,0.54,1.02,"Bahrain","Manama",0.12
+"4","BEY",7.26,5.45,9.5,"Lebanon","Beirut",1.0125
+"5","BKK",2.2,1.6,2.9,"Thailand","Bangkok",0.325
+"6","BOM",6.99,5.19,9.17,"India","Mumbai",0.995
+"7","CAN",9.61,7.24,12.57,"China","Guangzhou",1.3325
+"8","DEL",3.59,2.64,4.73,"India","New Delhi",0.5225
+"9","DMM",1.2,0.89,1.54,"Saudi Arabia","Dammam",0.1625
+"10","DOH",3.23,2.34,4.22,"Qatar","Doha",0.47
+"11","DXB",23.69,17.44,30.83,"United Arab Emirates","Dubai",3.3475
+"12","HKG",3.09,2.28,4.11,"Hong Kong","Hong Kong",0.4575
+"13","ICN",1.72,1.24,2.32,"South Korea","Seoul",0.27
+"14","IST",6.04,4.62,7.76,"Turkey","Istanbul",0.785
+"15","JED",5.58,4.18,7.01,"Saudi Arabia","Jeddah",0.7075
+"16","KUL",1.6,1.22,2.09,"Malaysia","Kuala Lumpur",0.2175
+"17","KWI",1.41,1.03,1.83,"Kuwait","Kuwait City",0.2
+"18","MCT",1.9,1.35,2.5,"Oman","Muscat",0.2875
+"19","MED",1.04,0.75,1.39,"Saudi Arabia","Medina",0.16
+"20","MNL",1.73,1.27,2.31,"Philippines","Manila",0.26
+"21","NRT",1.56,1.1,2.16,"Japan","Tokyo",0.265
+"22","PEK",7.99,5.93,10.55,"China","Beijing",1.155
+"23","PVG",5.67,4.16,7.6,"China","Shanghai",0.86
+"24","RUH",2.99,2.21,3.81,"Saudi Arabia","Riyadh",0.4
+"25","SIN",0.77,0.55,1.04,"Singapore","Singapore",0.1225

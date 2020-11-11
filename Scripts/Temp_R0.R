@@ -30,19 +30,17 @@ library(reshape2)
 # setwd("/Users/bethancracknelldaniels/Desktop/MSc project readings/YF in Asia Project")
 
 # Data 
-
-airport_introductions <- read.csv("DATA/airports_risk.csv", stringsAsFactors=FALSE)[, -1]
+airports_risk <- read.csv("DATA/airports_risk.csv", stringsAsFactors=FALSE)[, -1]
 temp_params <- read.csv("DATA/temp_params.csv", stringsAsFactors=FALSE)[, -1]
 temp_params<- column_to_rownames(temp_params, "Variable")
 temperature <- read.csv("DATA/prov_asia_temp.csv", stringsAsFactors=FALSE)[, -1]
 
 
 # Identifying variables 
-airport_country <- airport_introductions[, c(1,2)]
-SEA <- c("China", "Hong Kong", "India", "Japan", "Malaysia", "Pakistan", "Philippines", "Singapore", "South Korea", "Thailand" )
-ME <- c("Bahrain", "Kuwait", "Lebanon", "Oman", "Qatar", "Saudi Arabia", "Turkey", "United Arab Emirates", "Jordan")
-ME_code <- filter(airport_country, Asian_countries %in% ME ) $Airport
-SEA_code <- filter(airport_country, Asian_countries %in% SEA ) $Airport
+SEA <- c("China", "Hong Kong", "India", "Japan", "Malaysia","Philippines", "Singapore", "South Korea", "Thailand" )
+ME <- c("Bahrain", "Kuwait", "Lebanon", "Oman", "Qatar", "Saudi Arabia", "Turkey", "United Arab Emirates")
+ME_code <- filter(airports_risk, Asian_countries %in% ME ) $Airport
+SEA_code <- filter(airports_risk, Asian_countries %in% SEA ) $Airport
 
 
 # source scripts
@@ -78,28 +76,28 @@ vec_human_transmission <- 0.25
 # Estimate R0_VH and R0_HV for all locations at the average, minimum and maximum temperature 
 
 
-avg_R0_VH <- sapply(airport_introductions $Airport, function(x){est_R0_VH(x, temp_variables_average) }) 
+avg_R0_VH <- sapply(airports_risk $Airport, function(x){est_R0_VH(x, temp_variables_average) }) 
 
-avg_R0_HV<- sapply(airport_introductions$Airport, function(x){est_R0_HV_mean(x, 10000, temp_variables_average) }) 
-
-
-min_R0_VH <- sapply(airport_introductions $Airport, function(x){est_R0_VH(x,  temp_variables_min) }) 
-
-min_R0_HV<- sapply(airport_introductions $Airport, function(x){est_R0_HV_mean(x, 10000, temp_variables_min) }) 
+avg_R0_HV<- sapply(airports_risk$Airport, function(x){est_R0_HV_mean(x, 10000, temp_variables_average) }) 
 
 
-max_R0_VH <- sapply(airport_introductions $Airport, function(x){est_R0_VH(x, temp_variables_max) }) 
+min_R0_VH <- sapply(airports_risk $Airport, function(x){est_R0_VH(x,  temp_variables_min) }) 
 
-max_R0_HV<- sapply(airport_introductions $Airport, function(x){est_R0_HV_mean(x, 10000, temp_variables_max) }) 
+min_R0_HV<- sapply(airports_risk $Airport, function(x){est_R0_HV_mean(x, 10000, temp_variables_min) }) 
+
+
+max_R0_VH <- sapply(airports_risk $Airport, function(x){est_R0_VH(x, temp_variables_max) }) 
+
+max_R0_HV<- sapply(airports_risk $Airport, function(x){est_R0_HV_mean(x, 10000, temp_variables_max) }) 
 
 
 
 # Estimate R0 for all locations 
 
 
-R0_estimates_avg_temp <- sapply(airport_introductions $Airport, function(x){est_R0(x, 10000, temp_variables_average) })  #apply function to all airport codes 
-R0_estimates_min_temp <- sapply(airport_introductions $Airport, function(x){est_R0(x, 10000, temp_variables_min) })
-R0_estimates_max_temp <- sapply(airport_introductions $Airport, function(x){est_R0(x, 10000, temp_variables_max) })
+R0_estimates_avg_temp <- sapply(airports_risk $Airport, function(x){est_R0(x, 10000, temp_variables_average) })  #apply function to all airport codes 
+R0_estimates_min_temp <- sapply(airports_risk $Airport, function(x){est_R0(x, 10000, temp_variables_min) })
+R0_estimates_max_temp <- sapply(airports_risk $Airport, function(x){est_R0(x, 10000, temp_variables_max) })
 
 
 avg_R0 <- tidy_R0(R0_estimates_avg_temp)
@@ -108,7 +106,7 @@ max_R0 <- tidy_R0(R0_estimates_max_temp)
 
 list_R0 <-list(avg_R0, min_R0, max_R0  )
 
-all_R0_values <- sort_temp(temperature, list_R0, airport_introductions)
+all_R0_values <- sort_temp(temperature, list_R0, airports_risk)
 
 # Filter by region 
 
