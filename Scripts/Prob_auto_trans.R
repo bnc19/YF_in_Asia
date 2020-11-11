@@ -33,12 +33,10 @@ library(reshape2)
 # Data
 
 airports_risk <- read.csv("DATA/airports_risk.csv", stringsAsFactors=FALSE)[, -1]
-avg_R0_estimates <- read.csv("DATA/avg_R0_estimates.csv", stringsAsFactors=FALSE)[, -1]
-min_R0_estimates <- read.csv("DATA/min_R0_estimates.csv", stringsAsFactors=FALSE)[, -1]
-max_R0_estiamtes <- read.csv("DATA/max_R0_estimates.csv",stringsAsFactors=FALSE)[, -1]
-avg_temp_var <- read.csv("DATA/temp_variables_mean.csv", stringsAsFactors=FALSE)[, -1]
-
-
+avg_temp_var <-read.csv("DATA/avg_temp_var.csv", stringsAsFactors = FALSE)[, -1]
+avg_R0_estimates <- read.csv("DATA/avg_R0_estimates.csv")[, -1]
+min_R0_estimates <- read.csv("DATA/min_R0_estimates.csv")[, -1]
+max_R0_estimates <- read.csv("DATA/max_R0_estimates.csv")[, -1]
 
 # source scripts
 source("R/FUN_prob_auto_trans.R")
@@ -49,10 +47,10 @@ source("R/FUN_prob_auto_trans.R")
 
 # Estimate probability of transmission for all airports at all three temperatures 
 
-list_R0_estimates <- list (avg_R0_estimates,min_R0_estimates,  max_R0_estiamtes)
+list_R0_estimates <- list (avg_R0_estimates,min_R0_estimates,  max_R0_estimates)
 
 
-list_prob_transmission_all_temp <- lapply(1:3, function(j) {sapply(1:29, function(i){
+list_prob_transmission_all_temp <- lapply(1:3, function(j) {sapply(1:25, function(i){
   
   
   prob_auto(n = 10000,
@@ -74,16 +72,16 @@ tidy_results <- lapply(1:3, function(i){   #tidy results
 
 
 # add column identifying temperature 
-tidy_results[[1]]$temp <- rep("Avg", 29)
+tidy_results[[1]]$temp <- rep("Avg", 25)
 
-tidy_results[[2]]$temp <- rep("Min", 29)
+tidy_results[[2]]$temp <- rep("Min", 25)
 
-tidy_results[[3]]$temp <- rep("Max", 29)
+tidy_results[[3]]$temp <- rep("Max", 25)
 
 
 auto_probabilities <- bind_rows(tidy_results)
 
-arrange_auto_probabilities <- arrange(auto_probabilities, city)
+  arrange_auto_probabilities <- arrange(auto_probabilities, city)
 
 # seperate
 auto_list_cities <- auto_probabilities %>%
@@ -95,7 +93,7 @@ auto_list_cities <- auto_probabilities %>%
 # list of all city plots 
 
 
-list_auto_plots <- lapply(1:29, function(i){
+list_auto_plots <- lapply(1:25, function(i){
   plot_auto_cities(auto_list_cities[[2]][[i]], all_cities [i])
 })
 
@@ -127,7 +125,7 @@ ggsave(plot=all_auto_plots_anot , filename="Figure_2.png", height = 17, width = 
 
 # select cities with probabilities over 50%
 
-R0_risk <- rbind(avg_R0_estimates[c(7, 8,12 ), ], max_R0_estiamtes[c(26, 27), ])
+R0_risk <- rbind(avg_R0_estimates[c(6, 7,11 ), ], max_R0_estimates[c(22, 23), ])
 
 # values for sensitivity analyses 
 immunity <- c(0:100)/100
@@ -143,8 +141,8 @@ list_prob_imm_het <- lapply(1:5, function(k) {sapply(1:101, function(i) {sapply(
             mean_R0_HV = R0_risk[k, 4], 
             sd_R0_HV = R0_risk[k, 7], 
             k = k_sen[j],
-            seeds = R0_risk[k, 8], 
-            sd_seeds = R0_risk[k, 9],
+            seeds = R0_risk[k, 9], 
+            sd_seeds = R0_risk[k, 10],
             immunity = immunity[i])
 } ) } ) } )
 
@@ -221,7 +219,7 @@ df_R0_HV_mosq  <- lapply(R0_HV_mosq , function(x) tidy_data(x, mosq_per_person))
 
 ### Estimate the probabilities of auto transmission ###
 
-number_seeds_cd <- list_R0_estimates[[1]][c(12,7,8,5,17,6), ] # number of seeds for selected cities 
+number_seeds_cd <- list_R0_estimates[[1]][c(11,6,7,4,15,5), ] # number of seeds for selected cities 
 
 # estimate probabilities 
 list_prob_com_den <- lapply(1:6, function(k) {sapply(1:101, function(i) {sapply(1:5, function(j) { prob_auto(
@@ -229,8 +227,8 @@ list_prob_com_den <- lapply(1:6, function(k) {sapply(1:101, function(i) {sapply(
   R0_VH = R0_HV_comp[[k]][i],
   mean_R0_HV = df_R0_HV_mosq[[k]] [j, 2], 
   sd_R0_HV= df_R0_HV_mosq [[k]] [j, 5],
-  seeds = number_seeds_cd [k, 8], 
-  sd_seeds = number_seeds_cd [k, 9]) } ) } ) } ) 
+  seeds = number_seeds_cd [k, 9], 
+  sd_seeds = number_seeds_cd [k, 10]) } ) } ) } ) 
   
 
 # tidy data 
