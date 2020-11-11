@@ -35,7 +35,7 @@ asia_flows <- read.csv("DATA/asia_flows.country.csv")
 locations <- read.csv("DATA/asia_ec_locations_airport.csv")
 locations_country <- locations[c(1:101),-1 ]
 airport_flows <- read.csv("DATA/asia_flows_airport.csv")[ , c(2:4)]
-tourist_stay <- read.csv("tourist_stay.csv")[, -1]
+
 
 # source scripts
 source("R/FUN_YF_introductions.R")
@@ -86,7 +86,7 @@ list_epiflows   <-  lapply(1:48, function(i) {make_epiflows (
 
 # Extract duration of stay 
 
-duration_stay <- tourist_stay[, 2]
+duration_stay <- locations_country[c(1:48), 6]
 
 
 # Estimate the number of introductions into Asian countries from each endemic country 
