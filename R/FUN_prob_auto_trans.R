@@ -183,7 +183,7 @@ plot_immunity_k <- function(x, city) {
     scale_y_continuous(limits=c(0,1),breaks=seq(0,1,0.2)) + 
     scale_x_continuous(limits=c(0,1),breaks=seq(0,1,0.2)) +
     ggtitle(city) + 
-    geom_segment(x = 0, xend = 5, y = 0.5, yend = 0.5, size = 0.5, linetype = 3) +
+    geom_segment(x = 0, xend = 5, y = 0.5, yend = 0.5, size = 0.5, linetype = 2, color = "red") +
     geom_segment(x = 0.8, xend = 0.8, y = 0, yend = 5, size = 0.5, linetype = 3) 
   
   
@@ -223,13 +223,13 @@ est_R0_VH_comp <- function(airport.code, n, temp_variables, comp) {
   
   TV <- temp_variables #temp variable can be mean, min, max 
   
-  biting_rate <- TV$a[TV$temperature.airport  == airport.code] # select location specific mosq / person (SEA or Middle East)
+  biting_rate <- TV$a[TV$Airport  == airport.code] # select location specific mosq / person (SEA or Middle East)
   
   
   B_VH <- comp # effective transmission from vector to human set at 0.25 following "Global Risk and Elimination of Yellow Fever Epidemics"
   
   
-  lf <- TV$lf[TV$temperature.airport == airport.code]  # select airport temp specific longevity 
+  lf <- TV$lf[TV$Airport == airport.code]  # select airport temp specific longevity 
   
   
   R0 <- biting_rate * lf* B_VH  # multiply all parameters 
@@ -246,14 +246,14 @@ est_R0_HV_mosq <- function(airport.code, n,  temp_variables, mosq_per_person) {
   TV <- temp_variables  #temp variable can be mean, min, max 
   
   mosq_person <- mosq_per_person
-  biting_rate <- TV$a[TV$temperature.airport == airport.code]  # select airport temp specific biting rate 
+  biting_rate <- TV$a[TV$Airport == airport.code]  # select airport temp specific biting rate 
   
   
   
   B_HV <- human_vec_transmission(n)  # draw from distribution of effectve human to vector transmission 
   
   
-  prob_surv <- TV$prop_Surv[TV$temperature.airport == airport.code]  # select airport temp specific prob surv of EIP 
+  prob_surv <- TV$prop_Surv[TV$Airport== airport.code]  # select airport temp specific prob surv of EIP 
   
   DI <- infectious(n)  # draw from distribution for infectiousness 
   
@@ -331,8 +331,7 @@ plot_comp_den <- function(x, cities) {
     scale_y_continuous(limits=c(0,1),breaks=seq(0,1,0.2)) + 
     scale_x_continuous(limits=c(0,1),breaks=seq(0,1,0.2)) +
     ggtitle(cities) + 
-    geom_segment(x = 0, xend = 5, y = 0.5, yend = 0.5, size = 0.5, linetype = 3) + 
-    geom_segment(x = 0.25, xend = 0.25, y = 0, yend = 5, size = 0.5, linetype = 1, color = "grey")
+    geom_segment(x = 0, xend = 5, y = 0.5, yend = 0.5, size = 0.5, linetype = 2, color = "red")  
 } # plot 
 
 comp_legend <- function() {
