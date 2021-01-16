@@ -281,7 +281,7 @@ R0_VH_comp <- c(R0_VH_comp_avg, R0_VH_comp_max)
 
 ### Estimate R0 VH values for range of mosquitoes per person ###
 
-mosq_per_person <- c(0.05,0.85, 1.4, 2, 3, 5)
+mosq_per_person <- c(0.1,0.45,0.85,2,4,5)
 
 
 # calculate for 3 cities with AA population at average temp
