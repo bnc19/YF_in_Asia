@@ -36,31 +36,47 @@ each country and airport in Asia included in this analysis is also listed.
 * prov_asia_temp.csv: Ecological data for all provinces of interest in Asia. 
 
 * temp.params.csv: Medians of parameter samples for thermal minimum (*T0*) and maximum (*Tm*) and 
-positive rate constant (*c*) values for the mosquito traits: biting rate (*a*), lifespan (*lf*) and 
+positive rate constant (*c*) values for the mosquito traits: biting rate (*a*),  and 
 parasite development rate (*PDR*). 
 
+* mean_survival_aegypti.csv: Data on the mean survival of *Ae. aegypti* in the field, modelled across a range of temperatures.
+
+* mean_survival_albopictus.csv: Data on the mean survival of *Ae. albopictus* in the field, modelled across a range of temperatures.
+
+* mosq_per_person.csv: Data on the number of female *Ae. albopictus* and *Ae. aegypti* per person in cities in Asia. 
 
 Also included are data estimated as part of this project: 
 
-* airports_risk.csv: The number of yellow fever case introductions predicted into Airports in Asia 
+* airports_risk.csv: The number of yellow fever case introductions predicted into Airports in Asia. 
 
-* avg_R0_estimates.csv: *R0* estimates for cities in Asia at their average temperature 
+* AA_avg_R0_estimates.csv: *R0* estimates for cities in Asia at their average temperature for *Ae. aegypti*.
 
-* min_R0_estimates.csv: *R0* estimates for cities in Asia at their minimum temperature 
+* AA_max_R0_estimates.csv: *R0* estimates for cities in Asia at their maximum temperature for *Ae. aegypti*.
 
-* max_R0_estimates.csv: *R0* estimates for cities in Asia at their maximum temperature 
+* AA_min_R0_estimates.csv: *R0* estimates for cities in Asia at their minimum temperature for *Ae. aegypti*.
 
-* temp_variables_mean.csv: Temperature dependent mosquito trait (*a*, *lf* and *PDR*) estimates for cities in Asia at
-their average temperatures
+* AL_avg_R0_estimates.csv: *R0* estimates for cities in Asia at their average temperature for *Ae. albopictus*.
+
+* AL_max_R0_estimates.csv: *R0* estimates for cities in Asia at their maximum temperature for *Ae. albopictus*.
+
+* AL_min_R0_estimates.csv: *R0* estimates for cities in Asia at their minium temperature for *Ae. albopictus*.
+
+* AL_temp_variables_max.csv: Temperature dependent mosquito trait (*a* and *PDR*) estimates for cities in Asia at
+their average temperatures for *Ae. albopictus*.
+
+* AA_temp_variables_average.csv: Temperature dependent mosquito trait (*a* and *PDR*) estimates for cities in Asia at
+their average temperatures for *Ae. aegypti*.
+
 
 
 ## Scripts
 The scripts folder contains the main scripts for each separate analysis
 
-a. YF_introductions.R: Script for quantifying the risk of yellow fever case introductions in Asia
+a. YF_introductions.R: Script for quantifying the risk of yellow fever case introductions in Asia.
 
 b. Temp_R0.R: Script for estimating temperature dependent *R0* values for locations in Asia 
-at risk of yellow fever introductions 
+at risk of yellow fever introductions with either an *Ae. aegypti* or *Ae. albopictus* mosquito population.
+
 
 c. Prob_auto_trans.R: Script for estimating the probability of autochthonous transmission, 
 given the introduction of at least one yellow fever case, and related sensitivity analyses. 
@@ -89,7 +105,7 @@ To estimate the number of yellow fever case introduction into countries Asia, we
 
 #### Temperature dependent *R0* estimates 
 
-A temperature dependent model was used to estimate *R0* values for each Asian city predicted to have at least one yellow fever introduction. As yellow fever is transmitted by mosquitos, *R0* is the product of the average number of infectious mosquitos produced per infectious human (*R0<sup>HM</sup>*) and the average number of infectious humans produced per infectious mosquito (*R0<sup>MH</sup>*). Therefore, *R0<sup>HM</sup>* and *R0<sup>MH</sup>* were estimated at the average temperature of each Asian city. 
+A temperature dependent model was used to estimate *R0* values for each Asian city predicted to have at least one yellow fever introduction, with either an *Ae. aegypti* or *Ae. albopictus* mosquito population. As yellow fever is transmitted by mosquitos, *R0* is the product of the average number of infectious mosquitos produced per infectious human (*R0<sup>HM</sup>*) and the average number of infectious humans produced per infectious mosquito (*R0<sup>MH</sup>*). Therefore, *R0<sup>HM</sup>* and *R0<sup>MH</sup>* were estimated at the average temperature of each Asian city. 
 
 Sensitivity analysis on the influence of temperature on the predicted range of *R0* was also modelled, with *R0* values also estimated for the temperature extremes of each Asian city.
 
