@@ -184,7 +184,7 @@ all_auto_plots_anot <- annotate_figure(all_auto_plots,
                                           bottom = text_grob("Temperature", size = 10))
 
 
-ggsave(plot=all_auto_plots_anot, filename="Figure.jpg", height = 18, width = 15, units = "cm", dpi = 600)
+ggsave(plot=all_auto_plots_anot, filename="Figures/Figure_2.jpg", height = 18, width = 13, units = "cm", dpi = 600)
 
 
 
@@ -247,20 +247,18 @@ immunity_k_plots <- lapply(1:6, function(i){
 immunity_k_grid <- plot_grid(immunity_k_plots[[3]], immunity_k_plots[[4]], 
                              immunity_k_plots[[1]], immunity_k_plots[[5]],
                              immunity_k_plots[[2]], immunity_k_plots[[6]],
-                             leg, ncol = 2 , labels = c("A", "B") , label_size  = 14) 
+                              ncol = 2 , labels = c("A", "B") , label_size  = 14) 
 
-
-
-immunity_k_annot  <- annotate_figure(immunity_k_grid , 
+immunity_k_annot  <- annotate_figure(immunity_k_grid , leg, fig.lab.pos = "bottom",
                                      left = text_grob("Probability of autochthonous transmission", 
-                                     rot = 90, size = 10, vjust = 0.1, hjust = 0.3), 
+                                     rot = 90, size = 12, vjust = 0.1, hjust = 0.3), 
                                      bottom = text_grob("Proportion of the population assumed immune to yellow fever", 
-                                                        size = 10, vjust = -10))
+                                                        size = 12))
 
                         
 
 
-ggsave(plot=immunity_k_annot , filename="Figure_3.jpg",height = 22, width = 13, units = "cm", dpi = 600)
+ggsave(plot=immunity_k_annot , filename="Figures/Figure_3.jpg",height = 22, width = 13, units = "cm", dpi = 600)
 
 
 ################################################################################
@@ -348,7 +346,7 @@ all_comp_dens_anot <- annotate_figure(all_comp_dens_plots , legend,
 
 
 
-ggsave(plot=all_comp_dens_anot , filename="Sup_figure_2.jpg", height = 15, width =12 )
+ggsave(plot=all_comp_dens_anot , filename="Figures/Sup_figure_2.jpg", height = 15, width =12 )
   
   
 

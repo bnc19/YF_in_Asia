@@ -115,6 +115,8 @@ tidy_auto <- function (prob_transmission, airport_code, city) {
 # Function to plot the probability of autochthonous transmission for all cities 
 ################################################################################
 
+
+
 plot_auto_cities <- function(x, city){
   
   x$color <- ifelse(x$upper_CI >= 0.5, 'red', 'black')  # if upper 95% CI is above 0.5 code as red 
@@ -123,13 +125,14 @@ plot_auto_cities <- function(x, city){
     geom_point(size = 0.5, color =x$color ) +
     geom_errorbar(aes(ymin = lower_CI ,
                       ymax = upper_CI), color = x$color,  width = .25) +
-    ggtitle(city) + 
+    ggtitle(city ) + 
     ylab("") + 
     xlab("") + 
-    theme_hc(base_size = 7.5) +
+    theme_hc(base_size = 8) +
     scale_y_continuous(limits=c(0,1),breaks=seq(0,1,0.2))+ 
     theme(axis.text.x = element_text(angle = 0, vjust = 0.5, hjust=0.5), 
-          axis.title.y = element_text(vjust = 0.5, hjust=0.3, angle = 0)) +
+          axis.title.y = element_text(vjust = 0.5, hjust=0.3, angle = 0), 
+          plot.title = element_text(size= 8, hjust = 0.5)) +
     geom_segment(x = 0, xend = 5, y = 0.5, yend = 0.5, size = 0.3, linetype = 2, color = "red")
 }
 
@@ -206,7 +209,9 @@ add_legend <- function() {
     scale_x_continuous(limits=c(0,1),breaks=seq(0,1,0.2)) +
     ggtitle("city") + 
     geom_segment(x = 0, xend = 5, y = 0.5, yend = 0.5, size = 0.5, linetype = 3) + 
-    theme(legend.position = c(.60, .80), legend.text = element_text( size = 10))
+    theme(
+     # legend.position = c(.60, .80), 
+      legend.text = element_text( size = 10))
   
   leg <- get_legend(l)
   
