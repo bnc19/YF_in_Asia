@@ -184,7 +184,7 @@ all_auto_plots_anot <- annotate_figure(all_auto_plots,
                                           bottom = text_grob("Temperature", size = 10))
 
 
-ggsave(plot=all_auto_plots_anot, filename="Figures/Figure_2.jpg", height = 18, width = 13, units = "cm", dpi = 600)
+ggsave(plot=all_auto_plots_anot, filename="Figure_2.jpg", height = 18, width = 13, units = "cm", dpi = 600)
 
 
 
@@ -258,7 +258,7 @@ immunity_k_annot  <- annotate_figure(immunity_k_grid , leg, fig.lab.pos = "botto
                         
 
 
-ggsave(plot=immunity_k_annot , filename="Figures/Figure_3.jpg",height = 22, width = 13, units = "cm", dpi = 600)
+ggsave(plot=immunity_k_annot , filename="Figure_3.jpg",height = 22, width = 13, units = "cm", dpi = 600)
 
 
 ################################################################################
@@ -346,7 +346,7 @@ all_comp_dens_anot <- annotate_figure(all_comp_dens_plots , legend,
 
 
 
-ggsave(plot=all_comp_dens_anot , filename="Figures/Sup_figure_2.jpg", height = 15, width =12 )
+ggsave(plot=all_comp_dens_anot , filename="Sup_figure_2.jpg", height = 15, width =12 )
   
   
 
