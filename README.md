@@ -6,7 +6,7 @@ Concern is growing over the international spread of the vector-borne disease, ye
 
 This repository contains data and code pertaining:
 
-Cracknell Daniels B et al. Yellow fever in Asia–a risk analysis, Journal of Travel Medicine, 2021;, taab015, https://doi.org/10.1093/jtm/taab015
+Cracknell Daniels, B et. al., Yellow fever in Asia–a risk analysis, Journal of Travel Medicine, 2021;, taab015, https://doi.org/10.1093/jtm/taab015
 
 Specifically, it contains: 
 
