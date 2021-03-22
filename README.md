@@ -67,7 +67,6 @@ their average temperatures for *Ae. albopictus*.
 * AA_temp_variables_average.csv: Temperature dependent mosquito trait (*a* and *PDR*) estimates for cities in Asia at
 their average temperatures for *Ae. aegypti*.
 
-*n.b: data on travel flows from IATA currently by request only.* 
 
 ## Scripts
 The scripts folder contains the main scripts for each separate analysis
